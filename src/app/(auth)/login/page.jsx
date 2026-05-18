@@ -4,8 +4,8 @@ import { Button, Input } from '@heroui/react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
-import { authClient } from '@/lib/auth-client';
 import toast from 'react-hot-toast';
+import { authClient } from '@/lib/auth-client';
 
 export default function Login() {
 
@@ -18,6 +18,8 @@ export default function Login() {
          ...RegisterData,
          callbackURL: "/"
           });
+
+         
 
         if(error){
          toast.error("Login failed");

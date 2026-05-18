@@ -73,7 +73,7 @@ export function MainNavbar() {
                 <Image
                   width={40}
                   height={40}
-                  src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=400"
+                  src={session?.user?.image || "/default-avatar.png"}
                   alt="avatar"
                   className="w-10 h-10 rounded-full object-cover ring-2 ring-blue-600/10"
                 />

@@ -4,7 +4,8 @@ const nextConfig = {
     domains:["images.unsplash.com" ,
       "upload.wikimedia.org",
       "i.pravatar.cc" ,
-      "www.google.com"
+      "www.google.com",
+      "as1.ftcdn.net"
     ]
     
   }
