@@ -7,8 +7,9 @@ import { BookOpen, Filter } from "lucide-react";
 
 
 
-const PetPage = async () => {
-  const pets = await fetchPets();
+const PetPage = async ({ searchParams }) => {
+    const sParams = await searchParams;
+  const pets = await fetchPets(sParams.searchTerm || '');
   return (
     <div className="min-h-screen bg-slate-50">
             {/* Header */}

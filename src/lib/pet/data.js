@@ -1,5 +1,5 @@
- export const fetchPets = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses`);
+ export const fetchPets = async (searchTerm = '') => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses?search=${searchTerm}`);
 
   const data = await res.json();
 

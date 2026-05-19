@@ -4,6 +4,7 @@ import { auth } from '@/lib/auth';
 import { Chip } from '@heroui/react';
 import { BookOpen, Clock, BarChart, Users } from 'lucide-react';
 import { headers } from 'next/headers';
+import EnrollmentButton from '@/components/EnrollmentButton';
 
 import Image from 'next/image';
 
@@ -24,7 +25,8 @@ export default async function CourseDetails({ params }) {
     const { token } = await auth.api.getToken({
         headers: await headers(), 
       });
-      console.log(token);
+
+
 
 
     const pets= await fetchSingleCourse(id, token);
@@ -45,8 +47,8 @@ export default async function CourseDetails({ params }) {
                 <div className="lg:col-span-2 space-y-8">
                     <div className="relative group overflow-hidden rounded-[2.5rem] shadow-2xl aspect-video">
                         <Image
+                            alt={title || 'Course Image'}
                             src={thumbnail || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200'}
-                            alt={title}
                             fill
                             className="object-cover transform transition duration-700 group-hover:scale-105"
                         />
@@ -117,7 +119,7 @@ export default async function CourseDetails({ params }) {
                             </ul>
                         </div>
 
-                       
+                       <EnrollmentButton course={pets} />
                         <p className="text-center text-xs text-slate-500 font-bold">30-Day Money-Back Guarantee • Secure Payment</p>
                     </div>
                 </div>
