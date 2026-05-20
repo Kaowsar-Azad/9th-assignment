@@ -51,12 +51,14 @@ const FeaturedCard = ({ pet }) => {
                             View Details
                         </Button>
                     </Link>
-                    <Button
-                        color="success"
-                        className="flex-1 font-bold text-xs rounded-xl text-white"
-                    >
-                        Adopted
-                    </Button>
+                    <Link href={`/courses/${_id}`} className="flex-1">
+                        <Button
+                            color="success"
+                            className="w-full font-bold text-xs rounded-xl text-white bg-emerald-600"
+                        >
+                            Adopt Now
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </div>

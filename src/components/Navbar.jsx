@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-import { BookOpen, Menu, X, User, LogOut, LayoutDashboard } from "lucide-react";
+import { BookOpen, Menu, X, User, LogOut, LayoutDashboard, Heart } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import Image from "next/image";
@@ -37,16 +37,25 @@ export function MainNavbar() {
       }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <div className="flex items-center">
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="p-2 bg-blue-600 rounded-xl group-hover:rotate-12 transition-transform">
-                <BookOpen className="w-6 h-6 text-white" />
-              </div>
-              <span className="font-extrabold text-2xl tracking-tight text-slate-900">
-                Mentora
-              </span>
-            </Link>
-          </div>
+          <div className="flex items-center gap-3 group cursor-pointer">
+  <div className="bg-gradient-to-br from-emerald-400 via-green-500 to-teal-500 p-2 rounded-2xl shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-all duration-300">
+    <Heart
+      size={20}
+      fill="white"
+      className="text-white"
+    />
+  </div>
+
+  <span className="font-black text-3xl tracking-tight flex items-center">
+    <span className="bg-gradient-to-r from-emerald-200 via-emerald-400 to-green-500 bg-clip-text text-[22px] text-transparent">
+      Ado
+    </span>
+
+    <span className="bg-gradient-to-r from-green-400 via-emerald-500 to-lime-400 bg-clip-text text-transparent text-[23px] ml-1">
+      pets
+    </span>
+  </span>
+</div>
 
           <div className="hidden md:flex gap-8 items-center">
             <Link href="/" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">Home</Link>
