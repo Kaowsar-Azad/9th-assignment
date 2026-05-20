@@ -5,7 +5,10 @@ const nextConfig = {
       "upload.wikimedia.org",
       "i.pravatar.cc" ,
       "www.google.com",
-      "as1.ftcdn.net"
+      "as1.ftcdn.net",
+      "plus.unsplash.com",
+      "lh3.googleusercontent.com"
+      
     ]
     
   }

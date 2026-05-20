@@ -18,16 +18,17 @@ export default function Login() {
          ...RegisterData,
          callbackURL: "/"
           });
-
-         
-
         if(error){
          toast.error("Login failed");
          return;
         }
-        
-       
     }
+
+     const handelLoginWithGoogle = async () => {
+        await authClient.signIn.social({
+    provider: "google",
+  });
+     };
     
     return (
         <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f8fafc', padding: '3rem 20rem' }}>
@@ -45,6 +46,7 @@ export default function Login() {
 
                     <div className="space-y-4">
                         <Button
+                         onPress={handelLoginWithGoogle}
                             variant="bordered"
                             className="w-full h-12 font-bold rounded-2xl border-slate-200 hover:bg-slate-50 transition-colors gap-3"
                         >
