@@ -9,7 +9,7 @@ import { BookOpen, Filter } from "lucide-react";
 
 const PetPage = async ({ searchParams }) => {
     const sParams = await searchParams;
-  const pets = await fetchPets(sParams.searchTerm || '');
+  const pets = await fetchPets(sParams.searchTerm || '', sParams.category || '');
   return (
     <div className="min-h-screen bg-slate-50">
             {/* Header */}
@@ -19,7 +19,7 @@ const PetPage = async ({ searchParams }) => {
                 <div className="flex justify-between items-center mb-12">
                     <h2 className="text-2xl font-bold flex items-center gap-2">
                         <BookOpen className="w-6 h-6 text-blue-600" />
-                        All Courses
+                        Available Pets
                     </h2>
                     <Button
                         variant="flat"

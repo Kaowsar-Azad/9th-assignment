@@ -9,7 +9,6 @@ import toast from "react-hot-toast";
 export default function EnrollmentButton({ course }) {
     const { data: session } = useSession()
     const router = useRouter();
-    // console.log(session);
 
     const handleEnroll = async () => {
         const { data: jwtData } = await authClient.token();
@@ -22,8 +21,8 @@ export default function EnrollmentButton({ course }) {
             userId: session?.user?.id,
             studentName: session?.user?.name,
             studentEmail: session?.user?.email,
-            courseTitle: course?.title,
-            thumbnail: course?.thumbnail
+            courseTitle: course?.petName,
+            thumbnail: course?.imageUrl
         }
 
 

@@ -1,53 +1,89 @@
-
 "use client";
 
-import { Search } from "lucide-react";
+import { PET_SPECIES } from "@/lib/pet-species";
+import { ChevronDown, PawPrint, Search } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-
 import { useState } from "react";
 
 const SearchBar = () => {
-  const searchParams = useSearchParams(); // 
-  const router = useRouter();
-  const [search, setSearch] = useState(searchParams.get("searchTerm") || ""); 
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const [search, setSearch] = useState(searchParams.get("searchTerm") || "");
+    const [category, setCategory] = useState(searchParams.get("category") || "");
 
-  const handleSearch = () => {
-    const params = new URLSearchParams(searchParams.toString())
-    // ?filter= ?searchTerm=node
-    if (search) {
-      params.set("searchTerm", search)
-    } else {
-      params.delete("searchTerm")
-    }
-    router.push(`/courses?${params.toString()}`)
+    const pushFilters = (nextSearch, nextCategory) => {
+        const params = new URLSearchParams();
 
+        if (nextSearch?.trim()) {
+            params.set("searchTerm", nextSearch.trim());
+        }
+        if (nextCategory) {
+            params.set("category", nextCategory);
+        }
 
-  }
+        const query = params.toString();
+        router.push(query ? `/courses?${query}` : "/courses");
+    };
 
-  return (
-    <div className="relative flex items-center bg-white border border-slate-200 rounded-2xl shadow-sm focus-within:ring-4 focus-within:ring-blue-600/10 focus-within:border-blue-600 transition-all overflow-hidden">
+    const handleSearch = () => {
+        pushFilters(search, category);
+    };
 
-      <div className="pl-5 text-slate-400">
-        <Search className="w-5 h-5" />
-      </div>
+    const handleCategoryChange = (value) => {
+        setCategory(value);
+        pushFilters(search, value);
+    };
 
-      <input
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        type="text"
-        placeholder="Search for courses (e.g. Next.js, Web Design...)"
-        className="flex-1 h-14 px-4 outline-none bg-transparent text-slate-700 placeholder:text-slate-400"
-      />
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") handleSearch();
+    };
 
-      <button
-        onClick={handleSearch}
-        className="h-10 px-6 mr-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors"
+    return (
+        <div className="flex flex-col sm:flex-row gap-3 w-full">
+            <div className="relative sm:w-52 shrink-0">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+                    <PawPrint className="w-5 h-5" />
+                </div>
+                <select
+                    value={category}
+                    onChange={(e) => handleCategoryChange(e.target.value)}
+                    aria-label="Filter by species"
+                    className="w-full h-14 pl-12 pr-10 appearance-none border border-slate-200 rounded-2xl bg-white text-slate-700 font-medium outline-none cursor-pointer hover:border-emerald-300 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 transition-all shadow-sm"
+                >
+                    <option value="">All Species</option>
+                    {PET_SPECIES.map((species) => (
+                        <option key={species} value={species}>
+                            {species}
+                        </option>
+                    ))}
+                </select>
+                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+            </div>
 
-      >
-        Search
-      </button>
-    </div>
-  );
+            <div className="relative flex flex-1 items-center bg-white border border-slate-200 rounded-2xl shadow-sm focus-within:ring-4 focus-within:ring-emerald-600/10 focus-within:border-emerald-600 transition-all overflow-hidden">
+                <div className="pl-5 text-slate-400 shrink-0">
+                    <Search className="w-5 h-5" />
+                </div>
+
+                <input
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    type="text"
+                    placeholder="Search by pet name, breed, or species..."
+                    className="flex-1 h-14 px-4 outline-none bg-transparent text-slate-700 placeholder:text-slate-400 min-w-0"
+                />
+
+                <button
+                    onClick={handleSearch}
+                    type="button"
+                    className="h-10 px-6 mr-2 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 active:scale-[0.98] transition-all shrink-0"
+                >
+                    Search
+                </button>
+            </div>
+        </div>
+    );
 };
 
 export default SearchBar;

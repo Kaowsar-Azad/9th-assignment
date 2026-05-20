@@ -1,5 +1,11 @@
- export const fetchPets = async (searchTerm = '') => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses?search=${searchTerm}`);
+export const fetchPets = async (searchTerm = '', category = '') => {
+  const params = new URLSearchParams();
+  if (searchTerm) params.set('search', searchTerm);
+  if (category) params.set('category', category);
+
+  const query = params.toString();
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/courses${query ? `?${query}` : ''}`;
+  const res = await fetch(url);
 
   const data = await res.json();
 
@@ -15,13 +21,19 @@
 }; 
 
 export const addCourse = async (formData) => {
-  const courseData = {
-    title: formData.get('title'),
+  const petData = {
+    petName: formData.get('petName'),
     description: formData.get('description'),
-    thumbnail: formData.get('thumbnail'),
-    category: formData.get('category'),
-    price: parseFloat(formData.get('price')),
-    duration: formData.get('duration'),
+    imageUrl: formData.get('imageUrl'),
+    species: formData.get('species'),
+    breed: formData.get('breed'),
+    age: formData.get('age'),
+    gender: formData.get('gender'),
+    healthStatus: formData.get('healthStatus'),
+    vaccinationStatus: formData.get('vaccinationStatus'),
+    location: formData.get('location'),
+    adoptionFee: formData.get('adoptionFee'),
+    ownerEmail: formData.get('ownerEmail'),
   };
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses`, {
@@ -29,7 +41,7 @@ export const addCourse = async (formData) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(courseData),
+    body: JSON.stringify(petData),
   });
 
   if (!res.ok) {

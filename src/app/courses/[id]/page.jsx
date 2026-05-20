@@ -30,16 +30,16 @@ export default async function CourseDetails({ params }) {
 
 
     const pets= await fetchSingleCourse(id, token);
-    const { _id, enrollCount, title, thumbnail, description, category, price, duration, instructor } = pets;
+    const { _id, enrollCount, petName, imageUrl, description, species, adoptionFee, age, ownerEmail, breed, gender, healthStatus, vaccinationStatus, location } = pets;
 
     
 
 
     const featuredItems = [
-        { icon: Clock, label: duration || '12h 30m' },
-        { icon: BarChart, label: title || 'Beginner' },
-        { icon: BookOpen, label: `24 Lessons` },
-        { icon: Users, label: `${enrollCount || 0} Students` },
+        { icon: Clock, label: age || 'Unknown' },
+        { icon: BarChart, label: breed || 'Mixed' },
+        { icon: BookOpen, label: gender || 'Unknown' },
+        { icon: Users, label: location || 'Unknown' },
     ];
     return (
         <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
@@ -47,8 +47,8 @@ export default async function CourseDetails({ params }) {
                 <div className="lg:col-span-2 space-y-8">
                     <div className="relative group overflow-hidden rounded-[2.5rem] shadow-2xl aspect-video">
                         <Image
-                            alt={title || 'Course Image'}
-                            src={thumbnail || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200'}
+                            alt={petName || 'Pet Image'}
+                            src={imageUrl || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200'}
                             fill
                             className="object-cover transform transition duration-700 group-hover:scale-105"
                         />
@@ -58,14 +58,14 @@ export default async function CourseDetails({ params }) {
                                 variant="solid"
                                 className="font-bold shadow-xl"
                             >
-                                {category}
+                                {species}
                             </Chip>
                         </div>
                     </div>
 
                     <div className="space-y-4">
                         <h1 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-                            {title}
+                            {petName}
                         </h1>
                         <p className="text-xl text-slate-500 leading-relaxed">
                             {description}
@@ -94,20 +94,19 @@ export default async function CourseDetails({ params }) {
                 <div className="lg:col-span-1">
                     <div className="sticky top-24 bg-white/70 backdrop-blur-md p-8 rounded-[2rem] border border-white/20 shadow-2xl space-y-8">
                         <div className="space-y-2">
-                            <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Course Price</p>
+                            <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Adoption Fee</p>
                             <div className="flex items-baseline gap-2">
-                                <span className="text-5xl font-black text-blue-600">${price}</span>
-                                {/* <span className="text-slate-400 line-through font-bold">${price}</span> */}
+                                <span className="text-5xl font-black text-blue-600">{adoptionFee}</span>
                             </div>
                         </div>
 
                         <div className="space-y-4">
                             <p className="text-slate-700 font-medium">
-                                <strong>Instructor:</strong>  {instructor}
+                                <strong>Owner:</strong>  {ownerEmail}
                             </p>
                             <div className="w-full h-px bg-slate-100"></div>
                             <ul className="space-y-3">
-                                {['Lifetime Access', 'Expert Guidance', 'Verified Certificate'].map((item, i) => (
+                                {[`Health: ${healthStatus || 'N/A'}`, `Vaccination: ${vaccinationStatus || 'N/A'}`, 'Verified Owner'].map((item, i) => (
                                     <li
                                         key={i}
                                         className="flex items-center gap-3 text-sm font-bold text-slate-500"

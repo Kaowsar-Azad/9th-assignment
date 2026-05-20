@@ -7,7 +7,8 @@ const nextConfig = {
       "www.google.com",
       "as1.ftcdn.net",
       "plus.unsplash.com",
-      "lh3.googleusercontent.com"
+      "lh3.googleusercontent.com",
+      "imhttps"
       
     ]
     

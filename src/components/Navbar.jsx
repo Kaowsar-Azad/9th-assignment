@@ -50,9 +50,9 @@ export function MainNavbar() {
 
           <div className="hidden md:flex gap-8 items-center">
             <Link href="/" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">Home</Link>
-            <Link href="/courses" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">Courses</Link>
-            <Link href="/add-course" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">Add Course</Link>
-            <Link href="/dashboard" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">Dashboard</Link>
+            <Link href="/courses" className="font-medium text-slate-700 hover:text-blue-600 transition-colors">All Pets</Link>
+
+
           </div>
 
           <div className="hidden md:flex items-center gap-4">
@@ -91,9 +91,7 @@ export function MainNavbar() {
                 <Link href="/dashboard" className="px-4 py-2 text-sm hover:bg-muted flex items-center gap-3 transition-colors">
                   <LayoutDashboard className="w-4 h-4" /> Dashboard
                 </Link>
-                <Link href="/settings" className="px-4 py-2 text-sm hover:bg-muted flex items-center gap-3 transition-colors">
-                  <User className="w-4 h-4" /> Settings
-                </Link>
+
                 <button onClick={handleLogout} className="px-4 py-2 text-sm text-red-500 hover:bg-red-50 flex items-center gap-3 transition-colors text-left">
                   <LogOut className="w-4 h-4" /> Log Out
                 </button>
@@ -119,9 +117,9 @@ export function MainNavbar() {
       {isMenuOpen && (
         <div className="md:hidden px-4 pt-2 pb-6 space-y-2 bg-white border-b border-slate-200 animate-in slide-in-from-top duration-300">
           <Link href="/" className="block px-4 py-3 text-base font-medium text-slate-900 hover:bg-slate-50 rounded-xl">Home</Link>
-          <Link href="/courses" className="block px-4 py-3 text-base font-medium text-slate-900 hover:bg-slate-50 rounded-xl">Courses</Link>
-          <Link href="/add-course" className="block px-4 py-3 text-base font-medium text-slate-900 hover:bg-slate-50 rounded-xl">Add Course</Link>
-          <Link href="/dashboard" className="block px-4 py-3 text-base font-medium text-slate-900 hover:bg-slate-50 rounded-xl">Dashboard</Link>
+          <Link href="/courses" className="block px-4 py-3 text-base font-medium text-slate-900 hover:bg-slate-50 rounded-xl">All Pets</Link>
+
+
           <div className="pt-4 border-t border-border mt-4">
 
             <div className="grid grid-cols-2 gap-4">

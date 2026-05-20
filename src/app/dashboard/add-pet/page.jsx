@@ -10,9 +10,9 @@ import { addCourse } from "@/lib/pet/data";
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 
-import { PET_SPECIES } from '@/lib/pet-species';
+const SPECIES = ['Dog', 'Cat', 'Bird', 'Rabbit', 'Other'];
 
-export default async function AddCoursePage() {
+export default async function AddPetDashboardPage() {
     const session = await auth.api.getSession({
         headers: await headers()
     });
@@ -26,8 +26,8 @@ export default async function AddCoursePage() {
     }
 
     return (
-        <div className="max-w-4xl mx-auto px-4 py-16">
-            <div className="bg-white p-8 md:p-12 rounded-[2.5rem] border border-slate-200 shadow-2xl space-y-10">
+        <div className="max-w-4xl mx-auto py-4">
+            <div className="bg-white p-8 md:p-12 rounded-[2.5rem] border border-slate-200 shadow-sm space-y-10">
                 <div className="space-y-2 text-center">
                     <div className="mx-auto w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-600 mb-4">
                         <BookPlus className="w-8 h-8" />
@@ -79,7 +79,7 @@ export default async function AddCoursePage() {
                                 </div>
                                 <select id="species" name="species" required defaultValue="" className="w-full h-14 pl-12 pr-10 border-2 border-slate-200 hover:border-blue-600/50 focus:border-blue-600 rounded-2xl bg-white transition-all duration-300 shadow-none outline-none appearance-none text-slate-600 font-medium cursor-pointer">
                                     <option value="" disabled>Select species</option>
-                                    {PET_SPECIES.map((cat) => (
+                                    {SPECIES.map((cat) => (
                                         <option key={cat} value={cat}>{cat}</option>
                                     ))}
                                 </select>
