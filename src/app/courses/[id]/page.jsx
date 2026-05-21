@@ -1,17 +1,18 @@
 import { auth } from '@/lib/auth';
 import { Chip } from '@heroui/react';
 import {
-  BookOpen,
   Clock,
-  BarChart,
-  Users,
   ShieldCheck,
   Heart,
   Sparkles,
+  PawPrint,
+  User,
+  MapPin,
+  DollarSign,
 } from 'lucide-react';
 import { headers } from 'next/headers';
 import Image from 'next/image';
-import AdoptNowButton from '@/components/AdoptNowButton';
+import AdoptionForm from '@/components/AdoptionForm';
 
 const fetchSingleCourse = async (id, token) => {
   const res = await fetch(
@@ -51,11 +52,15 @@ export default async function CourseDetails({ params }) {
     location,
   } = pets;
 
-  const featuredItems = [
-    { icon: Clock, label: age || 'Unknown' },
-    { icon: BarChart, label: breed || 'Mixed' },
-    { icon: BookOpen, label: gender || 'Unknown' },
-    { icon: Users, label: location || 'Unknown' },
+  const gridItems = [
+    { icon: PawPrint, label: 'Species', value: species || 'Unknown' },
+    { icon: Sparkles, label: 'Breed', value: breed || 'Unknown' },
+    { icon: Clock, label: 'Age', value: age || 'Unknown' },
+    { icon: User, label: 'Gender', value: gender || 'Unknown' },
+    { icon: MapPin, label: 'Location', value: location || 'Unknown' },
+    { icon: DollarSign, label: 'Adoption Fee', value: adoptionFee || 'Free' },
+    { icon: Heart, label: 'Health Status', value: healthStatus || 'Unknown' },
+    { icon: ShieldCheck, label: 'Vaccinated', value: vaccinationStatus || 'Unknown' },
   ];
 
   return (
@@ -83,9 +88,10 @@ export default async function CourseDetails({ params }) {
 
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent"></div>
 
-              <div className="absolute top-4 left-4">
-                <Chip className="bg-white/15 backdrop-blur-md text-white border border-white/20 px-3 py-1 text-xs font-semibold">
-                  {species}
+              {/* Status Badge Top-Right */}
+              <div className="absolute top-4 right-4">
+                <Chip className="bg-emerald-500 text-white border border-emerald-400/25 px-3 py-1 text-xs font-black shadow-lg">
+                  Available
                 </Chip>
               </div>
 
@@ -101,170 +107,93 @@ export default async function CourseDetails({ params }) {
 
             </div>
 
-            {/* CONTENT */}
-            <div className="space-y-4">
-
-              <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-xs md:text-sm font-semibold">
-
-                <Sparkles size={15} />
-
-                Premium Adoption Profile
-
-              </div>
-
-              <h1 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight tracking-tight">
-                {petName}
-              </h1>
-
-              <p className="text-[15px] md:text-[17px] leading-7 text-slate-600 max-w-3xl">
-                {description}
-              </p>
-
-            </div>
-
-            {/* INFO CARDS */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 pt-2">
-
-              {featuredItems.map((item, i) => (
-
-                <div
-                  key={i}
-                  className="bg-white/80 backdrop-blur-xl border border-white/50 rounded-[20px] px-4 py-4 min-h-[88px] flex items-center shadow-sm hover:shadow-[0_10px_25px_rgba(16,185,129,0.08)] transition-all duration-300"
-                >
-
-                  <div className="flex items-center gap-3 w-full">
-
-                    <div className="bg-gradient-to-br from-emerald-400 via-green-500 to-teal-500 p-2.5 rounded-xl shadow-md shadow-emerald-500/20 flex items-center justify-center">
-
-                      <item.icon className="w-4 h-4 md:w-5 md:h-5 text-white" />
-
-                    </div>
-
-                    <div>
-
-                      <p className="text-[11px] md:text-xs text-slate-500 font-semibold uppercase tracking-wide">
-                        Pet Information
-                      </p>
-
-                      <h3 className="text-lg md:text-xl font-black text-slate-900 leading-tight mt-1">
-                        {item.label}
-                      </h3>
-
-                    </div>
-
-                  </div>
-
+            {/* PET NAME & ADOPTION FEE ROW */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 border-b border-emerald-100 pb-5">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">
+                  <Sparkles size={13} />
+                  Premium Adoption Profile
                 </div>
 
-              ))}
+                <h1 className="text-3xl md:text-4xl font-black text-slate-900 leading-tight tracking-tight">
+                  {petName}
+                </h1>
 
+                <div className="flex flex-wrap gap-2">
+                  {species && (
+                    <Chip size="sm" className="bg-emerald-100 text-emerald-800 font-bold border border-emerald-200">
+                      {species}
+                    </Chip>
+                  )}
+                  {breed && (
+                    <Chip size="sm" className="bg-slate-100 text-slate-700 font-bold border border-slate-200">
+                      {breed}
+                    </Chip>
+                  )}
+                  {gender && (
+                    <Chip size="sm" className="bg-sky-100 text-sky-800 font-bold border border-sky-200">
+                      {gender}
+                    </Chip>
+                  )}
+                </div>
+              </div>
+
+              <div className="text-left sm:text-right shrink-0">
+                <p className="uppercase tracking-[0.22em] text-[10px] font-bold text-slate-500 mb-1">
+                  Adoption Fee
+                </p>
+                <div className="flex items-end gap-1 justify-start sm:justify-end">
+                  <span className="text-3xl md:text-4xl font-black bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 bg-clip-text text-transparent leading-none">
+                    {String(adoptionFee).replace('BDT', '').trim()}
+                  </span>
+                  {String(adoptionFee).toUpperCase().includes('BDT') && (
+                    <span className="text-slate-500 text-sm font-semibold">
+                      BDT
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* INFO GRID (8 ITEMS) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 pt-2">
+              {gridItems.map((item, i) => (
+                <div
+                  key={i}
+                  className="bg-white/80 backdrop-blur-xl border border-white/50 rounded-[20px] px-4 py-4 min-h-[80px] flex items-center shadow-sm hover:shadow-[0_10px_25px_rgba(16,185,129,0.08)] transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3 w-full">
+                    <div className="bg-gradient-to-br from-emerald-400 via-green-500 to-teal-500 p-2.5 rounded-xl shadow-md shadow-emerald-500/20 flex items-center justify-center shrink-0">
+                      <item.icon className="w-4 h-4 md:w-5 md:h-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-[11px] md:text-xs text-slate-500 font-semibold uppercase tracking-wide">
+                        {item.label}
+                      </p>
+                      <h3 className="text-sm md:text-base font-black text-slate-900 leading-tight mt-0.5">
+                        {item.value}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* ABOUT SECTION */}
+            <div className="space-y-3 pt-4 border-t border-emerald-100">
+              <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">
+                About {petName}
+              </h2>
+              <p className="text-[15px] md:text-[16px] leading-7 text-slate-600 max-w-3xl">
+                {description}
+              </p>
             </div>
 
           </div>
 
           {/* RIGHT SIDE */}
-          <div className="lg:col-span-1">
-
-            <div className="sticky top-24 bg-white/75 backdrop-blur-2xl border border-white/50 rounded-[24px] p-5 md:p-6 shadow-[0_12px_35px_rgba(16,185,129,0.08)]">
-
-              <div className="space-y-5">
-
-                {/* PRICE */}
-                <div>
-
-                  <p className="uppercase tracking-[0.22em] text-[11px] font-bold text-slate-500 mb-2">
-                    Adoption Fee
-                  </p>
-
-                  <div className="flex items-end gap-2">
-
-                    <span className="text-4xl md:text-5xl font-black bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 bg-clip-text text-transparent leading-none">
-                      {String(adoptionFee).replace('BDT', '')}
-                    </span>
-
-                    <span className="text-slate-500 text-base md:text-lg font-semibold pb-1">
-                      BDT
-                    </span>
-
-                  </div>
-
-                </div>
-
-                {/* OWNER */}
-                <div className="bg-white/80 border border-white/50 rounded-[18px] p-4">
-
-                  <div className="flex items-center gap-3">
-
-                    <div className="bg-gradient-to-br from-emerald-400 to-green-500 p-2.5 rounded-xl">
-
-                      <Users className="text-white" size={18} />
-
-                    </div>
-
-                    <div className="overflow-hidden">
-
-                      <p className="text-xs md:text-sm text-slate-500 font-medium">
-                        Pet Owner
-                      </p>
-
-                      <h3 className="text-sm md:text-base font-bold text-slate-900 break-all">
-                        {ownerEmail}
-                      </h3>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-                {/* STATUS */}
-                <div className="space-y-3">
-
-                  {[
-                    `Health: ${healthStatus || 'N/A'}`,
-                    `Vaccination: ${vaccinationStatus || 'N/A'}`,
-                    'Verified Owner',
-                  ].map((item, i) => (
-
-                    <div
-                      key={i}
-                      className="flex items-center gap-3 bg-white/70 border border-white/50 rounded-xl px-4 py-3"
-                    >
-
-                      <div className="bg-gradient-to-br from-emerald-400 to-green-500 p-2 rounded-lg">
-
-                        <ShieldCheck className="text-white" size={16} />
-
-                      </div>
-
-                      <p className="font-semibold text-slate-700 text-sm md:text-[15px]">
-                        {item}
-                      </p>
-
-                    </div>
-
-                  ))}
-
-                </div>
-
-                {/* BUTTON */}
-                <div className="pt-2">
-                  <AdoptNowButton course={pets} />
-                </div>
-
-                {/* FOOTER */}
-                <div className="bg-emerald-50 border border-emerald-100 rounded-xl p-3 text-center">
-
-                  <p className="text-xs md:text-sm font-semibold text-emerald-700">
-                    100% Safe Adoption • Trusted Pet Owner
-                  </p>
-
-                </div>
-
-              </div>
-
-            </div>
-
+          <div className="lg:col-span-1 lg:sticky lg:top-24">
+            <AdoptionForm course={pets} />
           </div>
 
         </div>
