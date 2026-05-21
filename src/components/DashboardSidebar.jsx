@@ -27,7 +27,7 @@ export default function DashboardSidebar({ user }) {
 
     const menuItems = [
         { name: 'My Requests', href: '/dashboard', icon: LayoutDashboard },
-        { name: 'Add Pet', href: '/dashboard/add-pet', icon: PlusCircle },
+        { name: 'Add Pet', href: '/add-pet', icon: PlusCircle },
         { name: 'My Listings', href: '/dashboard/my-listings', icon: List },
     ];
 

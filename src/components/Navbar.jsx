@@ -115,19 +115,9 @@ export function MainNavbar() {
             {session && (
               <>
                 <Link
-                  href="/dashboard"
+                  href="/add-pet"
                   className={`font-semibold transition-colors duration-200 ${
-                    isActive("/dashboard")
-                      ? "text-blue-600 dark:text-blue-400"
-                      : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400"
-                  }`}
-                >
-                  My Requests
-                </Link>
-                <Link
-                  href="/dashboard/add-pet"
-                  className={`font-semibold transition-colors duration-200 ${
-                    isActive("/dashboard/add-pet")
+                    isActive("/add-pet")
                       ? "text-blue-600 dark:text-blue-400"
                       : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400"
                   }`}
@@ -239,23 +229,10 @@ export function MainNavbar() {
             {session && (
               <>
                 <Link
-                  href="/dashboard"
+                  href="/add-pet"
                   onClick={() => setIsMenuOpen(false)}
                   className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
-                    isActive("/dashboard")
-                      ? "bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-bold"
-                      : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50"
-                  }`}
-                >
-                  <ClipboardList size={18} />
-                  <span className="font-semibold text-sm">My Requests</span>
-                </Link>
-
-                <Link
-                  href="/dashboard/add-pet"
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
-                    isActive("/dashboard/add-pet")
+                    isActive("/add-pet")
                       ? "bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-bold"
                       : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50"
                   }`}
