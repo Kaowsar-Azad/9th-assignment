@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 const SPECIES = ["Dog", "Cat", "Bird", "Rabbit", "Other"];
 
@@ -50,12 +51,16 @@ export default function AddPetForm({ ownerEmail }) {
         };
 
         try {
+            const { data: jwtData } = await authClient.token();
+            const token = jwtData?.token;
+
             const res = await fetch(
                 `${process.env.NEXT_PUBLIC_API_URL}/courses`,
                 {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
                     },
                     body: JSON.stringify(petData),
                 }

@@ -1,19 +1,22 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { BookOpen, Menu, X, User, LogOut, LayoutDashboard, Heart, Sun, Moon, LogIn, Rocket } from "lucide-react";
+import { BookOpen, Menu, X, User, LogOut, LayoutDashboard, Heart, Sun, Moon, LogIn, Rocket, Home, ClipboardList, PlusCircle } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import Image from "next/image";
 import { signOut, useSession, authClient } from "@/lib/auth-client";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 export function MainNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const router = useRouter();
+  const pathname = usePathname();
   const { data: session, isPending } = useSession();
   const [theme, setTheme] = useState("light");
+
+  const isActive = (path) => pathname === path;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -71,10 +74,10 @@ export function MainNavbar() {
   };
 
   return (
-    <nav className={`sticky top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-white/70 dark:bg-slate-900/70 backdrop-blur-md shadow-sm py-2" : "bg-slate-50 dark:bg-slate-950 py-4"}`}>
+    <nav className={`sticky top-0 w-full z-50 transition-all duration-300 relative ${scrolled ? "bg-white/70 dark:bg-slate-900/70 backdrop-blur-md shadow-sm py-2" : "bg-slate-50 dark:bg-slate-950 py-4"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          <div className="flex items-center gap-3 group cursor-pointer">
+          <Link href="/" className="flex items-center gap-3 group">
             <div className="bg-gradient-to-br from-emerald-400 via-green-500 to-teal-500 p-2 rounded-2xl shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-all duration-300">
               <Heart size={20} fill="white" className="text-white" />
             </div>
@@ -86,11 +89,53 @@ export function MainNavbar() {
                 pets
               </span>
             </span>
-          </div>
+          </Link>
 
           <div className="hidden md:flex gap-8 items-center">
-            <Link href="/" className="font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Home</Link>
-            <Link href="/courses" className="font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">All Pets</Link>
+            <Link
+              href="/"
+              className={`font-semibold transition-colors duration-200 ${
+                isActive("/")
+                  ? "text-blue-600 dark:text-blue-400"
+                  : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400"
+              }`}
+            >
+              Home
+            </Link>
+            <Link
+              href="/courses"
+              className={`font-semibold transition-colors duration-200 ${
+                isActive("/courses")
+                  ? "text-blue-600 dark:text-blue-400"
+                  : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400"
+              }`}
+            >
+              All Pets
+            </Link>
+            {session && (
+              <>
+                <Link
+                  href="/dashboard"
+                  className={`font-semibold transition-colors duration-200 ${
+                    isActive("/dashboard")
+                      ? "text-blue-600 dark:text-blue-400"
+                      : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400"
+                  }`}
+                >
+                  My Requests
+                </Link>
+                <Link
+                  href="/dashboard/add-pet"
+                  className={`font-semibold transition-colors duration-200 ${
+                    isActive("/dashboard/add-pet")
+                      ? "text-blue-600 dark:text-blue-400"
+                      : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400"
+                  }`}
+                >
+                  Add Pet
+                </Link>
+              </>
+            )}
           </div>
 
           <div className="hidden md:flex items-center gap-4">
@@ -163,54 +208,109 @@ export function MainNavbar() {
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden px-4 pt-2 pb-6 space-y-2 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 animate-in slide-in-from-top duration-300">
-          <Link href="/" className="block px-4 py-3 text-base font-medium text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl">Home</Link>
-          <Link href="/courses" className="block px-4 py-3 text-base font-medium text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl">All Pets</Link>
+        <div className="md:hidden absolute top-full left-0 right-0 mx-4 mt-2 p-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-xl z-50 animate-in slide-in-from-top-4 fade-in duration-300 ease-out">
+          <div className="flex flex-col gap-1">
+            <Link
+              href="/"
+              onClick={() => setIsMenuOpen(false)}
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+                isActive("/")
+                  ? "bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-bold"
+                  : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50"
+              }`}
+            >
+              <Home size={18} />
+              <span className="font-semibold text-sm">Home</span>
+            </Link>
 
-          <div className="pt-4 border-t border-slate-200 dark:border-slate-800 mt-4 flex flex-col gap-4">
-            <div className="flex items-center justify-between px-4">
-              <span className="text-sm font-medium text-slate-600 dark:text-slate-400">Theme</span>
-              <button
-                onClick={toggleTheme}
-                aria-label="Toggle theme"
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-sm font-bold cursor-pointer"
-              >
-                {theme === "light" ? (
-                  <>
-                    <Moon size={16} />
-                    Dark Mode
-                  </>
-                ) : (
-                  <>
-                    <Sun size={16} />
-                    Light Mode
-                  </>
-                )}
-              </button>
-            </div>
+            <Link
+              href="/courses"
+              onClick={() => setIsMenuOpen(false)}
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+                isActive("/courses")
+                  ? "bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-bold"
+                  : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50"
+              }`}
+            >
+              <Heart size={18} />
+              <span className="font-semibold text-sm">All Pets</span>
+            </Link>
 
-            <div className="grid grid-cols-2 gap-4">
-              <Link href="/login">
-                <Button variant="flat" className="rounded-xl w-full bg-slate-100 dark:bg-slate-800">
-                  <span className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent flex items-center gap-1.5 font-bold">
+            {session && (
+              <>
+                <Link
+                  href="/dashboard"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+                    isActive("/dashboard")
+                      ? "bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-bold"
+                      : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                  }`}
+                >
+                  <ClipboardList size={18} />
+                  <span className="font-semibold text-sm">My Requests</span>
+                </Link>
+
+                <Link
+                  href="/dashboard/add-pet"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+                    isActive("/dashboard/add-pet")
+                      ? "bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-bold"
+                      : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                  }`}
+                >
+                  <PlusCircle size={18} />
+                  <span className="font-semibold text-sm">Add Pet</span>
+                </Link>
+              </>
+            )}
+          </div>
+
+          {!session ? (
+            <div className="mt-4 pt-4 border-t border-slate-200/80 dark:border-slate-800/80 grid grid-cols-2 gap-3">
+              <Link href="/login" onClick={() => setIsMenuOpen(false)}>
+                <Button variant="flat" className="rounded-xl w-full bg-slate-100 dark:bg-slate-800 font-bold py-5">
+                  <span className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent flex items-center gap-1.5 justify-center">
                     <LogIn size={18} className="text-blue-600 dark:text-blue-400" /> Login
                   </span>
                 </Button>
               </Link>
-              <Link href="/register">
-                <Button variant="flat" className="rounded-xl w-full bg-blue-50 dark:bg-blue-900/30">
-                  <span className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent flex items-center gap-1.5 font-bold">
+              <Link href="/register" onClick={() => setIsMenuOpen(false)}>
+                <Button variant="flat" className="rounded-xl w-full bg-blue-50 dark:bg-blue-900/30 font-bold py-5">
+                  <span className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent flex items-center gap-1.5 justify-center">
                     <Rocket size={18} className="text-blue-600 dark:text-blue-400" /> Get started
                   </span>
                 </Button>
               </Link>
             </div>
-
-            <div className="flex flex-col gap-2">
-              <p className="px-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Account</p>
-              <button onClick={handleLogout} className="block w-full text-left px-4 py-3 text-base font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-xl cursor-pointer">Log Out</button>
+          ) : (
+            <div className="mt-4 pt-4 border-t border-slate-200/80 dark:border-slate-800/80">
+              <div className="flex items-center gap-3 px-4 py-3 bg-slate-50 dark:bg-slate-800/40 rounded-xl mb-3">
+                <Image
+                  width={40}
+                  height={40}
+                  src={session?.user?.image || "/default-avatar.png"}
+                  alt="avatar"
+                  className="w-10 h-10 rounded-full object-cover ring-2 ring-blue-500/20"
+                />
+                <div className="text-left overflow-hidden">
+                  <p className="text-sm font-bold truncate text-slate-900 dark:text-white">{session?.user?.name}</p>
+                  <p className="text-[11px] truncate text-slate-500 dark:text-slate-400">{session?.user?.email}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  handleLogout();
+                }}
+                className="flex items-center gap-3 w-full text-left px-4 py-3 text-base font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-xl cursor-pointer"
+              >
+                <LogOut size={18} className="text-red-500" />
+                <span className="text-sm font-medium">Log Out</span>
+              </button>
             </div>
-          </div>
+          )}
         </div>
       )}
     </nav>

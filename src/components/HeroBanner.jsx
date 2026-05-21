@@ -21,7 +21,7 @@ const HeroBanner = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
             <Link
-              href="/pets"
+              href="/courses"
               className="bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 text-white px-8 h-12 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
             >
               <Heart size={18} fill="white" />
