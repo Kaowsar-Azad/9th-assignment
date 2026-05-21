@@ -9,7 +9,7 @@ const FeaturedCard = ({ pet }) => {
 
     return (
         <div
-            className="group flex flex-col bg-white rounded-3xl border border-slate-200 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+            className="group flex flex-col bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
         >
             <div className="relative aspect-16/10 overflow-hidden">
                 <Image src={imageUrl || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600'}
@@ -31,15 +31,15 @@ const FeaturedCard = ({ pet }) => {
                 </div>
             </div>
             <div className="p-5 flex flex-col grow space-y-3">
-                <h4 className="font-bold text-slate-900 line-clamp-2">
+                <h4 className="font-bold text-slate-900 dark:text-white line-clamp-2 transition-colors">
                     {petName}
                 </h4>
-                <div className="flex items-center justify-between pt-2 border-t border-slate-50 pb-3">
-                    <div className="flex items-center gap-1 text-[10px] font-bold text-slate-400">
+                <div className="flex items-center justify-between pt-2 border-t border-slate-50 dark:border-slate-800 pb-3 transition-colors">
+                    <div className="flex items-center gap-1 text-[10px] font-bold text-slate-400 dark:text-slate-500 transition-colors">
                         <Users className="w-3 h-3" />
                         <span>0</span>
                     </div>
-                    <span className="font-black text-blue-600">{adoptionFee}</span>
+                    <span className="font-black text-blue-600 dark:text-blue-500 transition-colors">{adoptionFee}</span>
                 </div>
                 <div className="flex gap-2 w-full mt-auto">
                     <Link href={`/courses/${_id}`} className="flex-1">
@@ -53,8 +53,7 @@ const FeaturedCard = ({ pet }) => {
                     </Link>
                     <Link href={`/courses/${_id}`} className="flex-1">
                         <Button
-                            color="success"
-                            className="w-full font-bold text-xs rounded-xl text-white bg-emerald-600"
+                            className="w-full font-bold text-xs rounded-xl text-white bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 transition-all duration-300"
                         >
                             Adopt Now
                         </Button>

@@ -6,29 +6,38 @@ import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import toast from 'react-hot-toast';
 import { authClient } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
+    const router = useRouter();
 
-       const handelLogin =  async (e) =>{
+    const handelLogin = async (e) => {
         e.preventDefault();
-        const  formData = new FormData(e.currentTarget);
+        const formData = new FormData(e.currentTarget);
         const RegisterData = Object.fromEntries(formData.entries());
 
-       const { data, error } = await authClient.signIn.email({
-         ...RegisterData,
-         callbackURL: "/"
-          });
-        if(error){
-         toast.error("Login failed");
-         return;
-        }
-    }
+        const { data, error } = await authClient.signIn.email({
+            email: RegisterData.email,
+            password: RegisterData.password,
+            dontNavigate: true
+        });
 
-     const handelLoginWithGoogle = async () => {
+        if (error) {
+            toast.error(error.message || "Login failed");
+            return;
+        }
+
+        toast.success("Login successful!");
+        router.push("/");
+        router.refresh();
+    };
+
+    const handelLoginWithGoogle = async () => {
         await authClient.signIn.social({
-    provider: "google",
-  });
-     };
+            provider: "google",
+            callbackURL: "/"
+        });
+    };
     
     return (
         <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f8fafc', padding: '3rem 20rem' }}>
@@ -41,7 +50,7 @@ export default function Login() {
                         <h2 className="text-3xl font-black text-slate-900 tracking-tight">
                             Welcome <span className="text-blue-600">Back</span>
                         </h2>
-                        <p className="text-slate-500 font-medium">Continue your learning journey today</p>
+                        <p className="text-slate-500 font-medium">Find your new best companion today</p>
                     </div>
 
                     <div className="space-y-4">
@@ -98,14 +107,7 @@ export default function Login() {
                                 className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
                             />
                         </div>
-                        <div className="flex justify-end">
-                            <Link
-                                href="#"
-                                className="text-sm font-bold text-blue-600 hover:underline underline-offset-4 transition-all"
-                            >
-                                Forgot password?
-                            </Link>
-                        </div>
+
                         <Button
                             color="primary"
                             type="submit"
@@ -117,7 +119,7 @@ export default function Login() {
 
                     <div className="text-center pt-2">
                         <p className="text-sm text-slate-500 font-medium">
-                            New to CourseHub?{' '}
+                            New to Pet Adoption?{' '}
                             <Link
                                 href="/register"
                                 className="text-blue-600 font-black hover:underline underline-offset-4 transition-all"

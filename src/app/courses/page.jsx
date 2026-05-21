@@ -11,14 +11,14 @@ const PetPage = async ({ searchParams }) => {
     const sParams = await searchParams;
   const pets = await fetchPets(sParams.searchTerm || '', sParams.category || '');
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
             {/* Header */}
             <CoursesHeader />
 
             <main className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center mb-12">
-                    <h2 className="text-2xl font-bold flex items-center gap-2">
-                        <BookOpen className="w-6 h-6 text-blue-600" />
+                    <h2 className="text-2xl font-bold flex items-center gap-2 dark:text-white transition-colors">
+                        <BookOpen className="w-6 h-6 text-blue-600 dark:text-blue-500 transition-colors" />
                         Available Pets
                     </h2>
                     <Button

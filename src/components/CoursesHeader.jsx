@@ -4,42 +4,42 @@ import { Heart, PawPrint } from "lucide-react";
 
 const CoursesHeader = () => {
     return (
-        <header className="bg-white border-b border-slate-100 py-14 md:py-20">
+        <header className="bg-white dark:bg-slate-950 border-b border-slate-100 dark:border-slate-800 py-14 md:py-20 transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-700 text-sm font-semibold mb-6">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 text-sm font-semibold mb-6 transition-colors">
                     <PawPrint className="w-4 h-4" />
                     Loving homes waiting for you
                 </div>
 
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight transition-colors">
                     Adoptable Pets{" "}
                     <span className="bg-clip-text text-transparent bg-linear-to-r from-emerald-600 to-teal-600">
                         Catalogue
                     </span>
                 </h1>
 
-                <p className="mt-5 text-lg md:text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
+                <p className="mt-5 text-lg md:text-xl text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed transition-colors">
                     Browse through all available pets, customize filters, and apply to bring home a new best friend.
                 </p>
 
                 <div className="mt-10 max-w-4xl mx-auto">
                     <Suspense
                         fallback={
-                            <div className="h-14 rounded-2xl bg-slate-100 animate-pulse" />
+                            <div className="h-14 rounded-2xl bg-slate-100 dark:bg-slate-800 animate-pulse transition-colors" />
                         }
                     >
                         <SearchBar />
                     </Suspense>
                 </div>
 
-                <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-400">
+                <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-400 dark:text-slate-500 transition-colors">
                     <span className="inline-flex items-center gap-1.5">
-                        <Heart className="w-4 h-4 text-emerald-500 fill-emerald-500" />
+                        <Heart className="w-4 h-4 text-emerald-500 fill-emerald-500 transition-colors" />
                         Verified listings
                     </span>
-                    <span className="hidden sm:inline text-slate-200">|</span>
+                    <span className="hidden sm:inline text-slate-200 dark:text-slate-700 transition-colors">|</span>
                     <span>Filter by species</span>
-                    <span className="hidden sm:inline text-slate-200">|</span>
+                    <span className="hidden sm:inline text-slate-200 dark:text-slate-700 transition-colors">|</span>
                     <span>Search by name or breed</span>
                 </div>
             </div>

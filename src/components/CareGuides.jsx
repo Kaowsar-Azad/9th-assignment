@@ -26,21 +26,21 @@ const CareGuides = () => {
   ];
 
   return (
-    <section className="bg-[#f3f4f6] py-16 px-6">
+    <section className="bg-[#f3f4f6] dark:bg-slate-950 py-16 px-6 transition-colors duration-300">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
         
         <div className="flex-1 space-y-6">
-          <div className="inline-flex items-center gap-2 bg-[#ecfdf5] text-[#065f46] px-4 py-1.5 rounded-full text-[12px] font-bold tracking-wide uppercase border border-[#d1fae5]">
+          <div className="inline-flex items-center gap-2 bg-[#ecfdf5] dark:bg-emerald-950/30 text-[#065f46] dark:text-[#34d399] px-4 py-1.5 rounded-full text-[12px] font-bold tracking-wide uppercase border border-[#d1fae5] dark:border-emerald-800 transition-colors">
             <BookOpen size={14} />
             EXPERT HEALTH GUIDES
           </div>
           
-          <h2 className="text-[32px] md:text-[48px] lg:text-[56px] font-extrabold text-[#1e293b] leading-[1.1]">
+          <h2 className="text-[32px] md:text-[48px] lg:text-[56px] font-extrabold text-[#1e293b] dark:text-white leading-[1.1] transition-colors">
             Essential Care Guides <br />
             For New Pet Owners
           </h2>
           
-          <p className="text-[#64748b] text-[16px] md:text-[18px] leading-relaxed max-w-xl">
+          <p className="text-[#64748b] dark:text-slate-400 text-[16px] md:text-[18px] leading-relaxed max-w-xl transition-colors">
             Transitioning a new pet into your home can require adjustment. We've compiled expert 
             veterinarian guidelines to keep your pets happy, safe, and active.
           </p>
@@ -54,7 +54,7 @@ const CareGuides = () => {
           {guides.map((guide, index) => (
             <div 
               key={index} 
-              className="bg-white rounded-[1.5rem] overflow-hidden shadow-sm border border-gray-100"
+              className="bg-white dark:bg-slate-900 rounded-[1.5rem] overflow-hidden shadow-sm border border-gray-100 dark:border-slate-800 transition-colors"
             >
               <button
                 onClick={() => setActiveIndex(activeIndex === index ? -1 : index)}
@@ -62,7 +62,7 @@ const CareGuides = () => {
               >
                 <div className="flex items-center gap-4">
                   <div className="w-[10px] h-[10px] bg-[#10b981] rounded-full"></div>
-                  <span className="text-[16px] md:text-[18px] font-bold text-[#1e293b]">
+                  <span className="text-[16px] md:text-[18px] font-bold text-[#1e293b] dark:text-white transition-colors">
                     {guide.title}
                   </span>
                 </div>
@@ -70,7 +70,7 @@ const CareGuides = () => {
                   animate={{ rotate: activeIndex === index ? 180 : 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <ChevronDown className="text-[#1e293b]" size={20} />
+                  <ChevronDown className="text-[#1e293b] dark:text-white transition-colors" size={20} />
                 </motion.div>
               </button>
 
@@ -82,7 +82,7 @@ const CareGuides = () => {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
-                    <div className="px-[52px] pb-8 text-[#94a3b8] leading-relaxed text-[13px] md:text-[14px]">
+                    <div className="px-[52px] pb-8 text-[#94a3b8] dark:text-slate-400 leading-relaxed text-[13px] md:text-[14px] transition-colors">
                       {guide.content}
                     </div>
                   </motion.div>

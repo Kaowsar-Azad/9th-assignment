@@ -81,19 +81,46 @@ export default function AdoptionForm({ course }) {
         }
     };
 
+    if (course?.status === "Adopted") {
+        return (
+            <div className="bg-white/75 dark:bg-slate-900/75 backdrop-blur-2xl border border-white/50 dark:border-slate-700/50 rounded-[24px] p-5 md:p-6 shadow-[0_12px_35px_rgba(16,185,129,0.08)] space-y-4 transition-colors duration-300">
+                <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-bold text-lg transition-colors">
+                    <Heart size={20} className="fill-indigo-500 text-indigo-500 transition-colors" />
+                    <h3>Adopted!</h3>
+                </div>
+                <p className="text-slate-500 dark:text-slate-400 text-sm transition-colors">
+                    {course?.petName} has found their forever home.
+                </p>
+                <div className="p-4 bg-indigo-50 dark:bg-indigo-950/50 rounded-2xl border border-indigo-100 dark:border-indigo-900 text-center space-y-2 transition-colors">
+                    <p className="text-sm font-semibold text-indigo-700 dark:text-indigo-400 transition-colors">Already Adopted</p>
+                    <p className="text-xs text-indigo-500 dark:text-indigo-300 transition-colors">
+                        This pet is no longer available for adoption requests.
+                    </p>
+                </div>
+                <Button
+                    size="lg"
+                    isDisabled
+                    className="w-full font-bold bg-slate-200 text-slate-500 cursor-not-allowed rounded-2xl h-12"
+                >
+                    Already Adopted
+                </Button>
+            </div>
+        );
+    }
+
     if (ownPet) {
         return (
-            <div className="bg-white/75 backdrop-blur-2xl border border-white/50 rounded-[24px] p-5 md:p-6 shadow-[0_12px_35px_rgba(16,185,129,0.08)] space-y-4">
-                <div className="flex items-center gap-2 text-rose-500 font-bold text-lg">
-                    <Heart size={20} className="fill-rose-500" />
+            <div className="bg-white/75 dark:bg-slate-900/75 backdrop-blur-2xl border border-white/50 dark:border-slate-700/50 rounded-[24px] p-5 md:p-6 shadow-[0_12px_35px_rgba(16,185,129,0.08)] space-y-4 transition-colors duration-300">
+                <div className="flex items-center gap-2 text-rose-500 dark:text-rose-400 font-bold text-lg transition-colors">
+                    <Heart size={20} className="fill-rose-500 transition-colors" />
                     <h3>Request to Adopt {course?.petName}</h3>
                 </div>
-                <p className="text-slate-500 text-sm">
+                <p className="text-slate-500 dark:text-slate-400 text-sm transition-colors">
                     Fill out this form and the owner will review your request.
                 </p>
-                <div className="p-4 bg-slate-100/80 rounded-2xl border border-slate-200 text-center space-y-2">
-                    <p className="text-sm font-semibold text-slate-700">Your Own Listing</p>
-                    <p className="text-xs text-slate-500">
+                <div className="p-4 bg-slate-100/80 dark:bg-slate-800/80 rounded-2xl border border-slate-200 dark:border-slate-700 text-center space-y-2 transition-colors">
+                    <p className="text-sm font-semibold text-slate-700 dark:text-slate-300 transition-colors">Your Own Listing</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 transition-colors">
                         You cannot adopt a pet that you added yourself.
                     </p>
                 </div>
@@ -109,30 +136,30 @@ export default function AdoptionForm({ course }) {
     }
 
     return (
-        <div className="bg-white/75 backdrop-blur-2xl border border-white/50 rounded-[24px] p-5 md:p-6 shadow-[0_12px_35px_rgba(16,185,129,0.08)]">
+        <div className="bg-white/75 dark:bg-slate-900/75 backdrop-blur-2xl border border-white/50 dark:border-slate-700/50 rounded-[24px] p-5 md:p-6 shadow-[0_12px_35px_rgba(16,185,129,0.08)] transition-colors duration-300">
             <form onSubmit={handleEnroll} className="space-y-5">
                 <div className="space-y-1">
-                    <div className="flex items-center gap-2 text-emerald-700 font-bold text-lg">
+                    <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-lg transition-colors">
                         <Heart size={20} className="fill-emerald-500 text-emerald-500" />
                         <h3>Request to Adopt {course?.petName}</h3>
                     </div>
-                    <p className="text-slate-500 text-xs md:text-sm">
+                    <p className="text-slate-500 dark:text-slate-400 text-xs md:text-sm transition-colors">
                         Fill out this form and the owner will review your request.
                     </p>
                 </div>
 
                 <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-600 block ml-1">Pet Name</label>
+                    <label className="text-xs font-bold text-slate-600 dark:text-slate-400 block ml-1 transition-colors">Pet Name</label>
                     <input
                         type="text"
                         value={course?.petName || ""}
                         disabled
-                        className="w-full h-11 px-3 bg-slate-50 border border-slate-200 rounded-xl font-semibold text-slate-700 opacity-80 cursor-not-allowed outline-none"
+                        className="w-full h-11 px-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl font-semibold text-slate-700 dark:text-slate-300 opacity-80 cursor-not-allowed outline-none transition-colors"
                     />
                 </div>
 
                 <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-600 block ml-1">Your Name</label>
+                    <label className="text-xs font-bold text-slate-600 dark:text-slate-400 block ml-1 transition-colors">Your Name</label>
                     <div className="relative flex items-center">
                         <div className="absolute left-3 text-slate-400">
                             <User size={16} />
@@ -142,13 +169,13 @@ export default function AdoptionForm({ course }) {
                             value={userName || ""}
                             disabled
                             placeholder="Log in to display your name"
-                            className="w-full h-11 pl-9 pr-3 bg-slate-50 border border-slate-200 rounded-xl font-semibold text-slate-700 opacity-80 cursor-not-allowed outline-none"
+                            className="w-full h-11 pl-9 pr-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl font-semibold text-slate-700 dark:text-slate-300 opacity-80 cursor-not-allowed outline-none transition-colors"
                         />
                     </div>
                 </div>
 
                 <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-600 block ml-1">Your Email</label>
+                    <label className="text-xs font-bold text-slate-600 dark:text-slate-400 block ml-1 transition-colors">Your Email</label>
                     <div className="relative flex items-center">
                         <div className="absolute left-3 text-slate-400">
                             <Mail size={16} />
@@ -158,13 +185,13 @@ export default function AdoptionForm({ course }) {
                             value={userEmail || ""}
                             disabled
                             placeholder="Log in to display your email"
-                            className="w-full h-11 pl-9 pr-3 bg-slate-50 border border-slate-200 rounded-xl font-semibold text-slate-700 opacity-80 cursor-not-allowed outline-none"
+                            className="w-full h-11 pl-9 pr-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl font-semibold text-slate-700 dark:text-slate-300 opacity-80 cursor-not-allowed outline-none transition-colors"
                         />
                     </div>
                 </div>
 
                 <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-600 block ml-1">Preferred Pickup Date</label>
+                    <label className="text-xs font-bold text-slate-600 dark:text-slate-400 block ml-1 transition-colors">Preferred Pickup Date</label>
                     <div className="relative flex items-center">
                         <div className="absolute left-3 text-slate-400 pointer-events-none">
                             <Calendar size={16} />
@@ -174,19 +201,19 @@ export default function AdoptionForm({ course }) {
                             required
                             value={pickupDate}
                             onChange={(e) => setPickupDate(e.target.value)}
-                            className="w-full h-11 pl-9 pr-3 bg-white border border-slate-200 hover:border-emerald-500/50 focus:border-emerald-500 rounded-xl font-semibold text-slate-700 outline-none transition-all cursor-pointer"
+                            className="w-full h-11 pl-9 pr-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-emerald-500/50 focus:border-emerald-500 rounded-xl font-semibold text-slate-700 dark:text-slate-200 outline-none transition-all cursor-pointer"
                         />
                     </div>
                 </div>
 
                 <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-600 block ml-1">Message to Owner</label>
+                    <label className="text-xs font-bold text-slate-600 dark:text-slate-400 block ml-1 transition-colors">Message to Owner</label>
                     <textarea
                         required
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         placeholder={`Tell the owner why you'd be a great match for ${course?.petName}...`}
-                        className="w-full min-h-[90px] p-3 bg-white border border-slate-200 hover:border-emerald-500/50 focus:border-emerald-500 rounded-xl font-semibold text-slate-700 text-sm outline-none transition-all resize-none"
+                        className="w-full min-h-[90px] p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-emerald-500/50 focus:border-emerald-500 rounded-xl font-semibold text-slate-700 dark:text-slate-200 text-sm outline-none transition-all resize-none"
                     />
                 </div>
 

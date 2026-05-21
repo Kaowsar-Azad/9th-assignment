@@ -79,9 +79,8 @@ export default function AdoptNowButton({ course }) {
 
     return (
         <Button
-            color="primary"
             size="lg"
-            className="w-full font-bold shadow-lg mt-4 bg-emerald-600"
+            className="w-full font-bold shadow-lg mt-4 text-white bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 transition-all duration-300"
             onPress={handleEnroll}
         >
             Adopt Now

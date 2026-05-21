@@ -69,8 +69,8 @@ const WhyChooseAdoption = () => {
               className="w-full h-[380px] md:h-[500px] object-cover" 
             />
             
-            <div className="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-md p-5 md:p-7 rounded-[1.8rem] shadow-xl">
-              <p className="text-[#1e293b] font-semibold text-sm md:text-lg italic leading-tight">
+            <div className="absolute bottom-5 left-5 right-5 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-5 md:p-7 rounded-[1.8rem] shadow-xl transition-colors">
+              <p className="text-[#1e293b] dark:text-slate-100 font-semibold text-sm md:text-lg italic leading-tight">
                 "Adopting Luna changed our family forever. She brings endless peace and joy."
               </p>
               <p className="text-[#10b981] mt-2 font-bold text-xs md:text-sm uppercase tracking-wider">

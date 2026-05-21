@@ -5,14 +5,14 @@ import { Star } from "lucide-react";
 
 const SuccessStories = () => {
   return (
-    <section className="bg-[#f8fafc] py-16 px-6">
+    <section className="bg-[#f8fafc] dark:bg-slate-900/30 py-16 px-6 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#1e293b] mb-4">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#1e293b] dark:text-white mb-4 transition-colors">
             Success Adoption Stories
           </h2>
-          <p className="text-gray-500 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+          <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed transition-colors">
             Read heartwarming stories of pets finding their true happy places and
             the lives they've illuminated.
           </p>

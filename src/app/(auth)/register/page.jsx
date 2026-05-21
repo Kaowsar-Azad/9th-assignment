@@ -59,9 +59,9 @@ export default function Register() {
 
                     <div className="text-center space-y-2 relative">
                         <h2 className="text-3xl font-black text-slate-900 tracking-tight">
-                            Join <span className="text-blue-600">Mentora</span>
+                            Join <span className="text-blue-600">Pet Adoption</span>
                         </h2>
-                        <p className="text-slate-500 font-medium">Create your account to start learning</p>
+                        <p className="text-slate-500 font-medium">Create your account to start adopting</p>
                     </div>
 
                     <form className="space-y-6" onSubmit={handelRegister}>
