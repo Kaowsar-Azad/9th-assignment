@@ -63,16 +63,16 @@ export default function EditPetModal({ pet, onClose, onUpdated }) {
     const labelClass = "text-xs font-bold text-slate-600 dark:text-slate-400 block mb-1.5 transition-colors";
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-            <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col border border-slate-200 dark:border-slate-800 transition-colors">
-                <div className="flex items-center justify-between p-6 border-b border-slate-100 dark:border-slate-800 shrink-0 transition-colors">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/50 backdrop-blur-sm">
+            <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-2xl max-h-[92vh] sm:max-h-[90vh] flex flex-col border border-slate-200 dark:border-slate-800 transition-colors">
+                <div className="flex items-center justify-between p-5 sm:p-6 border-b border-slate-100 dark:border-slate-800 shrink-0 transition-colors">
                     <div className="flex items-center gap-3">
                         <div className="p-2 bg-violet-50 dark:bg-violet-900/30 rounded-xl transition-colors">
                             <Pencil className="w-5 h-5 text-violet-600 dark:text-violet-400" />
                         </div>
                         <div>
-                            <h2 className="text-xl font-black text-slate-900 dark:text-white transition-colors">Edit Pet</h2>
-                            <p className="text-sm text-slate-500 dark:text-slate-400 font-medium transition-colors">{pet.petName}</p>
+                            <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white transition-colors">Edit Pet</h2>
+                            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium transition-colors">{pet.petName}</p>
                         </div>
                     </div>
                     <button
@@ -83,23 +83,23 @@ export default function EditPetModal({ pet, onClose, onUpdated }) {
                     </button>
                 </div>
 
-                <form onSubmit={handleSubmit} className="overflow-y-auto flex-1 p-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <form onSubmit={handleSubmit} className="overflow-y-auto flex-1 p-5 sm:p-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
 
-                        <div className="md:col-span-2">
+                        <div className="sm:col-span-2">
                             <label className={labelClass}>Pet Name</label>
                             <input name="petName" required value={form.petName} onChange={handleChange}
                                 placeholder="e.g. Max" className={inputClass} />
                         </div>
 
-                        <div className="md:col-span-2">
+                        <div className="sm:col-span-2">
                             <label className={labelClass}>Description</label>
                             <textarea name="description" required value={form.description} onChange={handleChange}
                                 placeholder="Tell us about the pet..."
                                 className="w-full min-h-[90px] p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-violet-400 focus:border-violet-500 rounded-xl font-medium text-slate-800 dark:text-slate-200 outline-none transition-all text-sm resize-none" />
                         </div>
 
-                        <div className="md:col-span-2">
+                        <div className="sm:col-span-2">
                             <label className={labelClass}>Image URL</label>
                             <div className="relative">
                                 <ImageIcon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -191,19 +191,19 @@ export default function EditPetModal({ pet, onClose, onUpdated }) {
                         </div>
                     </div>
 
-                    <div className="flex gap-3 pt-6 mt-2 border-t border-slate-100 dark:border-slate-800 transition-colors">
+                    <div className="flex flex-col-reverse sm:flex-row gap-3 pt-6 mt-4 border-t border-slate-100 dark:border-slate-800 transition-colors">
                         <button
                             type="button"
                             onClick={onClose}
                             disabled={loading}
-                            className="flex-1 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold transition-colors disabled:opacity-60"
+                            className="w-full sm:flex-1 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold transition-colors disabled:opacity-60 text-sm sm:text-base"
                         >
                             Cancel
                         </button>
                         <button
                             type="submit"
                             disabled={loading}
-                            className="flex-1 py-3 rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-bold transition-opacity hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                            className="w-full sm:flex-1 py-3 rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-bold transition-opacity hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm sm:text-base"
                         >
                             {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Pencil className="w-4 h-4" />}
                             {loading ? "Saving..." : "Save Changes"}

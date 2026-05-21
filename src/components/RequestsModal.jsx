@@ -95,16 +95,16 @@ export default function RequestsModal({ pet, onClose, onUpdated }) {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-            <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col border border-slate-200 dark:border-slate-800 transition-colors">
-                <div className="flex items-center justify-between p-6 border-b border-slate-100 dark:border-slate-800 shrink-0 transition-colors">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/50 backdrop-blur-sm">
+            <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-2xl max-h-[92vh] sm:max-h-[85vh] flex flex-col border border-slate-200 dark:border-slate-800 transition-colors">
+                <div className="flex items-center justify-between p-5 sm:p-6 border-b border-slate-100 dark:border-slate-800 shrink-0 transition-colors">
                     <div className="flex items-center gap-3">
                         <div className="p-2 bg-violet-50 dark:bg-violet-900/30 rounded-xl transition-colors">
                             <Users className="w-5 h-5 text-violet-600 dark:text-violet-400" />
                         </div>
                         <div>
-                            <h2 className="text-xl font-black text-slate-900 dark:text-white transition-colors">Adoption Requests</h2>
-                            <p className="text-sm text-slate-500 dark:text-slate-400 font-medium transition-colors">{pet.petName}</p>
+                            <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white transition-colors">Adoption Requests</h2>
+                            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium transition-colors">{pet.petName}</p>
                         </div>
                     </div>
                     <button
@@ -115,7 +115,7 @@ export default function RequestsModal({ pet, onClose, onUpdated }) {
                     </button>
                 </div>
 
-                <div className="overflow-y-auto flex-1 p-6">
+                <div className="overflow-y-auto flex-1 p-5 sm:p-6">
                     {loading ? (
                         <div className="flex items-center justify-center py-16 gap-3 text-slate-500 dark:text-slate-400 transition-colors">
                             <Loader2 className="w-5 h-5 animate-spin" />
@@ -132,7 +132,7 @@ export default function RequestsModal({ pet, onClose, onUpdated }) {
                                 const isSettled = req.status === "Approved" || req.status === "Rejected";
                                 return (
                                     <div key={req._id} className="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 space-y-3 transition-colors">
-                                        <div className="flex items-start justify-between gap-3">
+                                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
                                             <div className="space-y-1.5 min-w-0">
                                                 <div className="flex items-center gap-2 text-slate-800 dark:text-slate-200 transition-colors">
                                                     <div className="w-8 h-8 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-full flex items-center justify-center text-white text-xs font-black shrink-0">
@@ -140,30 +140,30 @@ export default function RequestsModal({ pet, onClose, onUpdated }) {
                                                     </div>
                                                     <span className="font-bold text-slate-900 dark:text-white truncate transition-colors">{req.studentName || "Unknown"}</span>
                                                 </div>
-                                                <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-medium ml-10 transition-colors">
+                                                <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-medium ml-0 sm:ml-10 transition-colors">
                                                     <Mail className="w-3.5 h-3.5 shrink-0" />
                                                     <span className="truncate">{req.studentEmail}</span>
                                                 </div>
-                                                <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-medium ml-10 transition-colors">
+                                                <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-medium ml-0 sm:ml-10 transition-colors">
                                                     <Calendar className="w-3.5 h-3.5 shrink-0" />
                                                     <span>Pickup: {req.pickupDate ? new Date(req.pickupDate).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : "Not specified"}</span>
                                                 </div>
                                             </div>
-                                            <div className="shrink-0">{statusBadge(req.status)}</div>
+                                            <div className="shrink-0 self-start sm:self-auto">{statusBadge(req.status)}</div>
                                         </div>
 
                                         {req.message && (
-                                            <div className="ml-10 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-3 transition-colors">
+                                            <div className="ml-0 sm:ml-10 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-3 transition-colors">
                                                 <p className="text-xs text-slate-600 dark:text-slate-300 font-medium leading-relaxed transition-colors">{req.message}</p>
                                             </div>
                                         )}
 
                                         {!isSettled && pet.status !== "Adopted" && (
-                                            <div className="flex gap-2 ml-10">
+                                            <div className="flex gap-2 ml-0 sm:ml-10">
                                                 <button
                                                     onClick={() => handleStatus(req._id, "Approved")}
                                                     disabled={updatingId === req._id}
-                                                    className="flex items-center gap-1.5 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-sm font-bold transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                                                    className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl text-sm font-bold transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                                                 >
                                                     {updatingId === req._id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Check className="w-3.5 h-3.5" />}
                                                     Approve
@@ -171,7 +171,7 @@ export default function RequestsModal({ pet, onClose, onUpdated }) {
                                                 <button
                                                     onClick={() => handleStatus(req._id, "Rejected")}
                                                     disabled={updatingId === req._id}
-                                                    className="flex items-center gap-1.5 px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 rounded-xl text-sm font-bold transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                                                    className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-4 py-2 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 rounded-xl text-sm font-bold transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                                                 >
                                                     {updatingId === req._id ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <XCircle className="w-3.5 h-3.5" />}
                                                     Reject

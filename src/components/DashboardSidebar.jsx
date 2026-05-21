@@ -86,7 +86,7 @@ export default function DashboardSidebar({ user }) {
             {/* Mobile Sidebar overlay */}
             {isOpen && (
                 <div className="fixed inset-0 z-50 md:hidden flex">
-                    <div className="fixed inset-0 bg-black/60 backdrop-blur-xs" onClick={() => setIsOpen(false)} />
+                    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setIsOpen(false)} />
                     <div className="relative w-64 h-full animate-in slide-in-from-left duration-200">
                         {sidebarContent}
                     </div>

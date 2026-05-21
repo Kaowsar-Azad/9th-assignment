@@ -40,24 +40,24 @@ export default function Login() {
     };
     
     return (
-        <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f8fafc', padding: '3rem 20rem' }}>
-            <div style={{ width: '100%', maxWidth: '28rem' }}>
-                <div className="bg-white p-10 rounded-[2.5rem] border border-slate-200 shadow-2xl space-y-8 relative overflow-hidden">
+        <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 px-4 py-12 sm:px-6 lg:px-8 transition-colors duration-300">
+            <div className="w-full max-w-md">
+                <div className="bg-white dark:bg-slate-900 p-8 sm:p-10 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 shadow-2xl space-y-8 relative overflow-hidden transition-colors">
                     {/* Decorative element */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/5 rounded-full -mr-16 -mt-16 blur-3xl"></div>
 
                     <div className="text-center space-y-2 relative">
-                        <h2 className="text-3xl font-black text-slate-900 tracking-tight">
-                            Welcome <span className="text-blue-600">Back</span>
+                        <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight transition-colors">
+                            Welcome <span className="bg-gradient-to-r from-blue-600 to-indigo-650 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">Back</span>
                         </h2>
-                        <p className="text-slate-500 font-medium">Find your new best companion today</p>
+                        <p className="text-slate-500 dark:text-slate-400 font-medium transition-colors">Find your new best companion today</p>
                     </div>
 
                     <div className="space-y-4">
                         <Button
-                         onPress={handelLoginWithGoogle}
+                            onPress={handelLoginWithGoogle}
                             variant="bordered"
-                            className="w-full h-12 font-bold rounded-2xl border-slate-200 hover:bg-slate-50 transition-colors gap-3"
+                            className="w-full h-12 font-bold rounded-2xl border-slate-200 dark:border-slate-850 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors gap-3"
                         >
                             <Image
                                 width={20}
@@ -72,16 +72,16 @@ export default function Login() {
 
                     <div className="relative">
                         <div className="absolute inset-0 flex items-center">
-                            <span className="w-full border-t border-slate-100"></span>
+                            <span className="w-full border-t border-slate-100 dark:border-slate-800"></span>
                         </div>
                         <div className="relative flex justify-center text-xs uppercase">
-                            <span className="bg-white px-4 text-slate-400 font-bold tracking-widest">Or with email</span>
+                            <span className="bg-white dark:bg-slate-900 px-4 text-slate-400 dark:text-slate-500 font-bold tracking-widest transition-colors">Or with email</span>
                         </div>
                     </div>
 
                     <form className="space-y-6" onSubmit={handelLogin}>
                         <div className="space-y-2">
-                            <label htmlFor="email" className="text-sm font-bold text-slate-700 ml-1">
+                            <label htmlFor="email" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Email Address
                             </label>
                             <Input
@@ -90,12 +90,12 @@ export default function Login() {
                                 placeholder="Enter your email"
                                 type="email"
                                 name="email"
-                                className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
+                                className="border-2 border-slate-200 dark:border-slate-800 hover:border-blue-600/50 dark:hover:border-blue-500/50 focus-within:border-blue-600 dark:focus-within:border-blue-500 bg-white dark:bg-slate-905 w-full rounded-2xl transition-all duration-300"
                             />
                         </div>
 
                         <div className="space-y-2">
-                            <label htmlFor="password" className="text-sm font-bold text-slate-700 ml-1">
+                            <label htmlFor="password" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Password
                             </label>
                             <Input
@@ -104,7 +104,7 @@ export default function Login() {
                                 placeholder="••••••••"
                                 type="password"
                                 name="password"
-                                className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
+                                className="border-2 border-slate-200 dark:border-slate-800 hover:border-blue-600/50 dark:hover:border-blue-500/50 focus-within:border-blue-600 dark:focus-within:border-blue-500 bg-white dark:bg-slate-905 w-full rounded-2xl transition-all duration-300"
                             />
                         </div>
 
@@ -118,11 +118,11 @@ export default function Login() {
                     </form>
 
                     <div className="text-center pt-2">
-                        <p className="text-sm text-slate-500 font-medium">
+                        <p className="text-sm text-slate-500 dark:text-slate-400 font-medium transition-colors">
                             New to Pet Adoption?{' '}
                             <Link
                                 href="/register"
-                                className="text-blue-600 font-black hover:underline underline-offset-4 transition-all"
+                                className="text-blue-600 dark:text-blue-400 font-black hover:underline underline-offset-4 transition-all"
                             >
                                 Create an account
                             </Link>

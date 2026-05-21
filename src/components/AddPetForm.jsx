@@ -92,25 +92,25 @@ export default function AddPetForm({ ownerEmail }) {
     };
 
     return (
-        <div className="max-w-4xl mx-auto py-4">
-            <div className="bg-white dark:bg-slate-950 p-8 md:p-12 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 shadow-sm space-y-10 transition-colors duration-300">
+        <div className="max-w-4xl mx-auto py-4 px-4 sm:px-6">
+            <div className="bg-white dark:bg-slate-950 p-5 sm:p-8 md:p-12 rounded-[1.5rem] sm:rounded-[2.5rem] border border-slate-200 dark:border-slate-800 shadow-sm space-y-8 sm:space-y-10 transition-colors duration-300">
                 <div className="space-y-2 text-center">
-                    <div className="mx-auto w-16 h-16 bg-blue-600/10 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4 transition-colors">
-                        <BookPlus className="w-8 h-8" />
+                    <div className="mx-auto w-14 h-14 sm:w-16 sm:h-16 bg-blue-600/10 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4 transition-colors">
+                        <BookPlus className="w-7 h-7 sm:w-8 sm:h-8" />
                     </div>
-                    <h1 className="text-4xl font-black text-slate-900 dark:text-white transition-colors">
+                    <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white transition-colors">
                         Add New{" "}
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-600">
                             Pet
                         </span>
                     </h1>
-                    <p className="text-slate-500 dark:text-slate-400 font-medium transition-colors">
+                    <p className="text-slate-500 dark:text-slate-400 font-medium text-sm sm:text-base transition-colors">
                         Help a pet find a loving home
                     </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                         {/* Pet Name */}
                         <div className="md:col-span-2 space-y-2">
                             <label htmlFor="petName" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
@@ -355,13 +355,13 @@ export default function AddPetForm({ ownerEmail }) {
                         </div>
                     </div>
 
-                    <div className="pt-4 flex gap-4">
+                    <div className="pt-4 flex flex-col-reverse sm:flex-row gap-3 sm:gap-4">
                         <Button
                             variant="flat"
                             size="lg"
                             type="button"
                             onClick={() => router.back()}
-                            className="flex-1 font-bold rounded-2xl h-14"
+                            className="w-full sm:flex-1 font-bold rounded-2xl h-14"
                         >
                             Cancel
                         </Button>
@@ -370,7 +370,7 @@ export default function AddPetForm({ ownerEmail }) {
                             type="submit"
                             size="lg"
                             disabled={loading}
-                            className="flex-2 font-black rounded-2xl h-14 shadow-xl shadow-blue-600/20"
+                            className="w-full sm:flex-1 font-black rounded-2xl h-14 shadow-xl shadow-blue-600/20"
                         >
                             {loading ? "Adding..." : "Add Pet"}
                         </Button>

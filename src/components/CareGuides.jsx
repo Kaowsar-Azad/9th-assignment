@@ -26,7 +26,7 @@ const CareGuides = () => {
   ];
 
   return (
-    <section className="bg-[#f3f4f6] dark:bg-slate-950 py-16 px-6 transition-colors duration-300">
+    <section className="bg-[#f3f4f6] dark:bg-slate-950 py-16 px-4 sm:px-6 transition-colors duration-300">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
         
         <div className="flex-1 space-y-6">
@@ -82,7 +82,7 @@ const CareGuides = () => {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
-                    <div className="px-[52px] pb-8 text-[#94a3b8] dark:text-slate-400 leading-relaxed text-[13px] md:text-[14px] transition-colors">
+                    <div className="px-6 md:px-[52px] pb-8 text-[#94a3b8] dark:text-slate-400 leading-relaxed text-[13px] md:text-[14px] transition-colors">
                       {guide.content}
                     </div>
                   </motion.div>

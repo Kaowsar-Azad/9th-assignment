@@ -52,21 +52,21 @@ export default function Register() {
     };
 
     return (
-        <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f8fafc', padding: '3rem 15px' }}>
-            <div style={{ width: '100%', maxWidth: '28rem' }}>
-                <div className="bg-white p-10 rounded-[2.5rem] border border-slate-200 shadow-2xl space-y-8 relative overflow-hidden">
+        <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 px-4 py-12 sm:px-6 lg:px-8 transition-colors duration-300">
+            <div className="w-full max-w-md">
+                <div className="bg-white dark:bg-slate-900 p-8 sm:p-10 rounded-[2.5rem] border border-slate-200 dark:border-slate-800 shadow-2xl space-y-8 relative overflow-hidden transition-colors">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/5 rounded-full -mr-16 -mt-16 blur-3xl"></div>
 
                     <div className="text-center space-y-2 relative">
-                        <h2 className="text-3xl font-black text-slate-900 tracking-tight">
-                            Join <span className="text-blue-600">Pet Adoption</span>
+                        <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight transition-colors">
+                            Join <span className="bg-gradient-to-r from-blue-600 to-indigo-650 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">Pet Adoption</span>
                         </h2>
-                        <p className="text-slate-500 font-medium">Create your account to start adopting</p>
+                        <p className="text-slate-500 dark:text-slate-400 font-medium transition-colors">Create your account to start adopting</p>
                     </div>
 
                     <form className="space-y-6" onSubmit={handelRegister}>
                         <div className="space-y-2">
-                            <label htmlFor="name" className="text-sm font-bold text-slate-700 ml-1">
+                            <label htmlFor="name" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Full Name
                             </label>
                             <Input
@@ -74,12 +74,12 @@ export default function Register() {
                                 required
                                 placeholder="Enter your name"
                                 name="name"
-                                className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
+                                className="border-2 border-slate-200 dark:border-slate-800 hover:border-blue-600/50 dark:hover:border-blue-500/50 focus-within:border-blue-600 dark:focus-within:border-blue-500 bg-white dark:bg-slate-905 w-full rounded-2xl transition-all duration-300"
                             />
                         </div>
 
                         <div className="space-y-2">
-                            <label htmlFor="email" className="text-sm font-bold text-slate-700 ml-1">
+                            <label htmlFor="email" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Email Address
                             </label>
                             <Input
@@ -88,12 +88,12 @@ export default function Register() {
                                 placeholder="Enter your email"
                                 type="email"
                                 name="email"
-                                className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
+                                className="border-2 border-slate-200 dark:border-slate-800 hover:border-blue-600/50 dark:hover:border-blue-500/50 focus-within:border-blue-600 dark:focus-within:border-blue-500 bg-white dark:bg-slate-905 w-full rounded-2xl transition-all duration-300"
                             />
                         </div>
 
                         <div className="space-y-2">
-                            <label htmlFor="image" className="text-sm font-bold text-slate-700 ml-1">
+                            <label htmlFor="image" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Profile Image URL
                             </label>
                             <Input
@@ -101,12 +101,12 @@ export default function Register() {
                                 placeholder="https://images.unsplash.com/..."
                                 type="url"
                                 name="image"
-                                className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
+                                className="border-2 border-slate-200 dark:border-slate-800 hover:border-blue-600/50 dark:hover:border-blue-500/50 focus-within:border-blue-600 dark:focus-within:border-blue-500 bg-white dark:bg-slate-905 w-full rounded-2xl transition-all duration-300"
                             />
                         </div>
 
                         <div className="space-y-2">
-                            <label htmlFor="password" className="text-sm font-bold text-slate-700 ml-1">
+                            <label htmlFor="password" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Password
                             </label>
                             <Input
@@ -115,9 +115,9 @@ export default function Register() {
                                 placeholder="••••••••"
                                 type="password"
                                 name="password"
-                                className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
+                                className="border-2 border-slate-200 dark:border-slate-800 hover:border-blue-600/50 dark:hover:border-blue-500/50 focus-within:border-blue-600 dark:focus-within:border-blue-500 bg-white dark:bg-slate-905 w-full rounded-2xl transition-all duration-300"
                             />
-                            <div className="text-[11px] text-slate-400 font-semibold ml-1.5 space-y-0.5">
+                            <div className="text-[11px] text-slate-400 dark:text-slate-500 font-semibold ml-1.5 space-y-0.5 transition-colors">
                                 <p>• At least 6 characters long</p>
                                 <p>• At least one uppercase letter (A-Z)</p>
                                 <p>• At least one lowercase letter (a-z)</p>
@@ -125,7 +125,7 @@ export default function Register() {
                         </div>
 
                         <div className="space-y-2">
-                            <label htmlFor="confirmPassword" className="text-sm font-bold text-slate-700 ml-1">
+                            <label htmlFor="confirmPassword" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Confirm Password
                             </label>
                             <Input
@@ -134,7 +134,7 @@ export default function Register() {
                                 placeholder="••••••••"
                                 type="password"
                                 name="confirmPassword"
-                                className="border-2 border-slate-200 hover:border-blue-600/50 focus-within:border-blue-600 transition-all duration-300 h-14 bg-white w-full rounded-2xl"
+                                className="border-2 border-slate-200 dark:border-slate-800 hover:border-blue-600/50 dark:hover:border-blue-500/50 focus-within:border-blue-600 dark:focus-within:border-blue-500 bg-white dark:bg-slate-905 w-full rounded-2xl transition-all duration-300"
                             />
                         </div>
 
@@ -148,9 +148,9 @@ export default function Register() {
                     </form>
 
                     <div className="text-center pt-2">
-                        <p className="text-sm text-slate-500 font-medium">
+                        <p className="text-sm text-slate-500 dark:text-slate-400 font-medium transition-colors">
                             Already have an account?{' '}
-                            <Link href="/login" className="text-blue-600 font-black hover:underline underline-offset-4 transition-all">
+                            <Link href="/login" className="text-blue-600 dark:text-blue-400 font-black hover:underline underline-offset-4 transition-all">
                                 Sign in
                             </Link>
                         </p>
