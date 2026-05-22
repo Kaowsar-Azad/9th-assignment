@@ -16,4 +16,4 @@ Features:
 
 NPM Packages Used:
 Frontend: next (v16.2.6), react, better-auth (Authentication), @heroui/react (UI Components), tailwindcss (Styling), lucide-react & react-icons (Icons), react-hot-toast (Notifications), framer-motion (Animations).
-Backend: express (Server Framework), mongodb (Database), cors (Cross-Origin Resource Sharing), dotenv (Environment Variables), jose-cjs (JWT Token Verification).
+Backend: express (Server Framework), mongodb (Database),  dotenv (Environment Variables), jose-cjs (JWT Token Verification).
