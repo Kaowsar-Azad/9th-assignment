@@ -3,7 +3,15 @@ import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { jwt } from "better-auth/plugins"
 
-const client = new MongoClient(process.env.MONGODB_URL);
+let client;
+if (process.env.NODE_ENV === "development") {
+  if (!global._mongoClientForAuth) {
+    global._mongoClientForAuth = new MongoClient(process.env.MONGODB_URL);
+  }
+  client = global._mongoClientForAuth;
+} else {
+  client = new MongoClient(process.env.MONGODB_URL);
+}
 const db = client.db("petdb");
 
 export const auth = betterAuth({
