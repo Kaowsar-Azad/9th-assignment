@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Chip } from "@heroui/react";
-import { BookOpen, Clock } from "lucide-react";
+import { Clock, PawPrint } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "@/lib/auth-client";
@@ -17,12 +17,11 @@ const CourseCard = ({ pet }) => {
     
     const handleAdoptNow = () => {
         if (!session?.user) {
-           
-            router.push("/login");
+            router.push(`/login?callbackUrl=/courses/${_id}?adopt=true`);
             return;
         }
     
-        router.push(`/courses/${_id}`);
+        router.push(`/courses/${_id}?adopt=true`);
     };
 
     return (
@@ -60,7 +59,7 @@ const CourseCard = ({ pet }) => {
                         <Clock className="w-3.5 h-3.5" /> {age && !String(age).toLowerCase().includes('year') ? `${age} Years` : age}
                     </span>
                     <span className="flex items-center gap-1">
-                        <BookOpen className="w-3.5 h-3.5" /> {breed}
+                        <PawPrint className="w-3.5 h-3.5" /> {breed}
                     </span>
                 </div>
 

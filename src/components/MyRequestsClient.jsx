@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Eye, XCircle, Loader2 } from "lucide-react";
+import Image from "next/image";
+import { Eye, XCircle, Loader2, X, AlertTriangle } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 
@@ -15,6 +16,7 @@ const statusStyles = {
 export default function MyRequestsClient({ initialRequests, petMap, stats }) {
     const [requests, setRequests] = useState(initialRequests);
     const [cancellingId, setCancellingId] = useState(null);
+    const [cancelModalPet, setCancelModalPet] = useState(null);
 
     const total = requests.length;
     const pending = requests.filter((r) => r.status === "Pending").length;
@@ -22,7 +24,6 @@ export default function MyRequestsClient({ initialRequests, petMap, stats }) {
     const rejected = requests.filter((r) => r.status === "Rejected").length;
 
     const handleCancel = async (enrollmentId) => {
-        if (!confirm("Are you sure you want to cancel this adoption request?")) return;
         setCancellingId(enrollmentId);
         try {
             const { data: jwtData } = await authClient.token();
@@ -86,20 +87,32 @@ export default function MyRequestsClient({ initialRequests, petMap, stats }) {
                         {/* Mobile Cards View */}
                         <div className="md:hidden divide-y divide-slate-100 dark:divide-slate-800 transition-colors">
                             {requests.map((req) => {
-                                const petId = req.courseId || petMap[req.courseTitle];
+                                const petData = petMap[req.courseId] || petMap[req.courseTitle] || {};
+                                const petId = petData.id;
+                                const petImage = petData.imageUrl;
                                 const status = req.status || "Pending";
                                 return (
                                     <div key={req._id} className="p-5 space-y-4">
-                                        <div className="flex items-start justify-between gap-3">
-                                            <div className="min-w-0">
-                                                <h3 className="font-extrabold text-slate-900 dark:text-white transition-colors truncate">{req.courseTitle}</h3>
-                                                <p className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider mt-1">
+                                        <div className="flex items-center gap-3.5">
+                                            <div className="relative w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-slate-100 dark:bg-slate-800 border border-slate-200/60 dark:border-slate-800/50">
+                                                <Image
+                                                    src={petImage || "https://images.unsplash.com/photo-1543466835-00a7907e9de1"}
+                                                    alt={req.courseTitle}
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                            </div>
+                                            <div className="min-w-0 flex-1">
+                                                <div className="flex items-center justify-between gap-2">
+                                                    <h3 className="font-extrabold text-slate-900 dark:text-white transition-colors truncate text-sm">{req.courseTitle}</h3>
+                                                    <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold border shrink-0 ${statusStyles[status] || statusStyles.Pending}`}>
+                                                        {status}
+                                                    </span>
+                                                </div>
+                                                <p className="text-[9px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-wider mt-1">
                                                     Req: {new Date(req.enrolledAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
                                                 </p>
                                             </div>
-                                            <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold border shrink-0 ${statusStyles[status] || statusStyles.Pending}`}>
-                                                {status}
-                                            </span>
                                         </div>
                                         <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">
                                             Preferred Pickup: <span className="font-bold text-slate-800 dark:text-slate-200">{req.pickupDate ? new Date(req.pickupDate).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : "Not specified"}</span>
@@ -116,9 +129,9 @@ export default function MyRequestsClient({ initialRequests, petMap, stats }) {
                                             )}
                                             {status === "Pending" && (
                                                 <button
-                                                    onClick={() => handleCancel(req._id)}
+                                                    onClick={() => setCancelModalPet(req)}
                                                     disabled={cancellingId === req._id}
-                                                    className="flex items-center gap-1.5 px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 font-bold rounded-xl text-xs transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                                                    className="flex items-center gap-1.5 px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 font-bold rounded-xl text-xs transition-colors disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                                                 >
                                                     {cancellingId === req._id
                                                         ? <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -146,11 +159,27 @@ export default function MyRequestsClient({ initialRequests, petMap, stats }) {
                                 </thead>
                                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800 transition-colors">
                                     {requests.map((req) => {
-                                        const petId = req.courseId || petMap[req.courseTitle];
+                                        const petData = petMap[req.courseId] || petMap[req.courseTitle] || {};
+                                        const petId = petData.id;
+                                        const petImage = petData.imageUrl;
                                         const status = req.status || "Pending";
                                         return (
                                             <tr key={req._id} className="hover:bg-slate-50/40 dark:hover:bg-slate-800/40 transition-colors">
-                                                <td className="px-6 py-5 font-bold text-slate-900 dark:text-slate-100">{req.courseTitle}</td>
+                                                <td className="px-6 py-5">
+                                                    <div className="flex items-center gap-3">
+                                                        <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 bg-slate-100 dark:bg-slate-800 border border-slate-200/60 dark:border-slate-800/50">
+                                                            <Image
+                                                                src={petImage || "https://images.unsplash.com/photo-1543466835-00a7907e9de1"}
+                                                                alt={req.courseTitle}
+                                                                fill
+                                                                className="object-cover"
+                                                            />
+                                                        </div>
+                                                        <span className="font-bold text-slate-900 dark:text-slate-100">
+                                                            {req.courseTitle}
+                                                        </span>
+                                                    </div>
+                                                </td>
                                                 <td className="px-6 py-5 text-sm text-slate-600 dark:text-slate-400">
                                                     {new Date(req.enrolledAt).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}
                                                 </td>
@@ -178,9 +207,9 @@ export default function MyRequestsClient({ initialRequests, petMap, stats }) {
 
                                                         {status === "Pending" && (
                                                             <button
-                                                                onClick={() => handleCancel(req._id)}
+                                                                onClick={() => setCancelModalPet(req)}
                                                                 disabled={cancellingId === req._id}
-                                                                className="flex items-center gap-1.5 px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 font-bold rounded-xl text-xs transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                                                                className="flex items-center gap-1.5 px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200 font-bold rounded-xl text-xs transition-colors disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
                                                             >
                                                                 {cancellingId === req._id
                                                                     ? <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -199,6 +228,52 @@ export default function MyRequestsClient({ initialRequests, petMap, stats }) {
                     </>
                 )}
             </div>
+
+            {/* Cancel Adoption Request Confirmation Modal */}
+            {cancelModalPet && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+                    <div className="bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-md border border-slate-200 dark:border-slate-800 overflow-hidden transition-colors animate-in zoom-in-95 duration-200">
+                        <div className="flex items-center justify-between p-5 sm:p-6 border-b border-slate-100 dark:border-slate-800 transition-colors">
+                            <div className="flex items-center gap-3">
+                                <div className="p-2 bg-amber-50 dark:bg-amber-950/30 rounded-xl transition-colors">
+                                    <AlertTriangle className="w-5 h-5 text-amber-500 dark:text-amber-400" />
+                                </div>
+                                <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white transition-colors">Cancel Request</h2>
+                            </div>
+                            <button
+                                onClick={() => setCancelModalPet(null)}
+                                className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors text-slate-500 dark:text-slate-400 hover:text-slate-850 dark:hover:text-slate-200"
+                            >
+                                <X className="w-5 h-5" />
+                            </button>
+                        </div>
+
+                        <div className="p-5 sm:p-6 space-y-5">
+                            <p className="text-slate-650 dark:text-slate-350 text-sm transition-colors leading-relaxed">
+                                Are you sure you want to cancel your adoption request for <span className="font-extrabold text-slate-900 dark:text-white">"{cancelModalPet.courseTitle}"</span>? This action will remove the request permanently.
+                            </p>
+
+                            <div className="flex flex-col-reverse sm:flex-row gap-3">
+                                <button
+                                    onClick={() => setCancelModalPet(null)}
+                                    className="w-full sm:flex-1 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold transition-colors text-sm sm:text-base cursor-pointer"
+                                >
+                                    No, Keep Request
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        handleCancel(cancelModalPet._id);
+                                        setCancelModalPet(null);
+                                    }}
+                                    className="w-full sm:flex-1 py-3 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-bold transition-colors flex items-center justify-center gap-2 text-sm sm:text-base cursor-pointer"
+                                >
+                                    Yes, Cancel Request
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

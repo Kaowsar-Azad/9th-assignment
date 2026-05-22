@@ -1,7 +1,8 @@
-export const fetchPets = async (searchTerm = '', category = '') => {
+export const fetchPets = async (searchTerm = '', category = '', sort = '') => {
   const params = new URLSearchParams();
   if (searchTerm) params.set('search', searchTerm);
   if (category) params.set('category', category);
+  if (sort) params.set('sort', sort);
 
   const query = params.toString();
   const url = `${process.env.NEXT_PUBLIC_API_URL}/courses${query ? `?${query}` : ''}`;

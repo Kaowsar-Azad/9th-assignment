@@ -1,11 +1,11 @@
 'use client';
-
 import { Button, Input } from '@heroui/react';
 import Link from 'next/link';
 import { User, Mail, Lock, ArrowRight } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Register() {
     const router = useRouter();
@@ -50,6 +50,12 @@ export default function Register() {
         toast.success("Account created successfully!");
         router.push("/login");
     };
+     const handelLoginWithGoogle = async () => {
+            await authClient.signIn.social({
+                provider: "google",
+                callbackURL: "/"
+            });
+        };
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 px-4 py-12 sm:px-6 lg:px-8 transition-colors duration-300">
@@ -62,8 +68,31 @@ export default function Register() {
                             Join <span className="bg-gradient-to-r from-blue-600 to-indigo-650 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">Pet Adoption</span>
                         </h2>
                         <p className="text-slate-500 dark:text-slate-400 font-medium transition-colors">Create your account to start adopting</p>
+                          <div className="space-y-4">
+                                                <Button
+                                                    onPress={handelLoginWithGoogle}
+                                                    variant="bordered"
+                                                    className="w-full h-12 font-bold rounded-2xl border-slate-200 dark:border-slate-850 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors gap-3"
+                                                >
+                                                    <Image
+                                                        width={20}
+                                                        height={20}
+                                                        src="https://www.google.com/favicon.ico"
+                                                        className="w-5 h-5"
+                                                        alt="Google"
+                                                    />
+                                                    Sign in with Google
+                                                </Button>
+                                            </div>
                     </div>
-
+                    <div className="relative">
+                        <div className="absolute inset-0 flex items-center">
+                            <span className="w-full border-t border-slate-100 dark:border-slate-800"></span>
+                        </div>
+                        <div className="relative flex justify-center text-xs uppercase">
+                            <span className="bg-white dark:bg-slate-900 px-4 text-slate-400 dark:text-slate-500 font-bold tracking-widest transition-colors">Or with From</span>
+                        </div>
+                    </div>
                     <form className="space-y-6" onSubmit={handelRegister}>
                         <div className="space-y-2">
                             <label htmlFor="name" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Input, Button, TextArea } from "@heroui/react";
 import {
-    BookPlus,
     Image as ImageIcon,
     DollarSign,
     Clock,
@@ -96,7 +95,7 @@ export default function AddPetForm({ ownerEmail }) {
             <div className="bg-white dark:bg-slate-950 p-5 sm:p-8 md:p-12 rounded-[1.5rem] sm:rounded-[2.5rem] border border-slate-200 dark:border-slate-800 shadow-sm space-y-8 sm:space-y-10 transition-colors duration-300">
                 <div className="space-y-2 text-center">
                     <div className="mx-auto w-14 h-14 sm:w-16 sm:h-16 bg-blue-600/10 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center text-blue-600 dark:text-blue-400 mb-4 transition-colors">
-                        <BookPlus className="w-7 h-7 sm:w-8 sm:h-8" />
+                        <PawPrint className="w-7 h-7 sm:w-8 sm:h-8" />
                     </div>
                     <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white transition-colors">
                         Add New{" "}

@@ -25,7 +25,11 @@ export default async function DashboardPage() {
     const petsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses`, { cache: "no-store" });
     const allPets = await petsRes.json() || [];
     const petMap = {};
-    allPets.forEach((p) => { petMap[p.petName] = p._id; });
+    allPets.forEach((p) => {
+        const petInfo = { id: p._id, imageUrl: p.imageUrl };
+        petMap[p.petName] = petInfo;
+        petMap[p._id] = petInfo;
+    });
 
     const processedRequests = enrollments.map((e) => ({
         ...e,

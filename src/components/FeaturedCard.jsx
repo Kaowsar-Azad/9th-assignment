@@ -1,11 +1,24 @@
+"use client";
+
 import { Chip, Button } from "@heroui/react";
 import { Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const FeaturedCard = ({ pet }) => {
     const { _id, imageUrl, petName, adoptionFee, species } = pet;
+    const { data: session } = useSession();
+    const router = useRouter();
 
+    const handleAdoptNow = () => {
+        if (!session?.user) {
+            router.push(`/login?callbackUrl=/courses/${_id}?adopt=true`);
+            return;
+        }
+        router.push(`/courses/${_id}?adopt=true`);
+    };
 
     return (
         <div
@@ -51,13 +64,12 @@ const FeaturedCard = ({ pet }) => {
                             View Details
                         </Button>
                     </Link>
-                    <Link href={`/courses/${_id}`} className="flex-1">
-                        <Button
-                            className="w-full font-bold text-xs rounded-xl text-white bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 transition-all duration-300"
-                        >
-                            Adopt Now
-                        </Button>
-                    </Link>
+                    <button
+                        onClick={handleAdoptNow}
+                        className="flex-1 font-bold text-xs rounded-xl text-white bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 py-2 px-4 cursor-pointer"
+                    >
+                        Adopt Now
+                    </button>
                 </div>
             </div>
         </div>

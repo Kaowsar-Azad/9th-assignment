@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { BookOpen, Menu, X, User, LogOut, LayoutDashboard, Heart, Sun, Moon, LogIn, Rocket, Home, ClipboardList } from "lucide-react";
+import { Menu, X, User, LogOut, LayoutDashboard, Heart, Sun, Moon, LogIn, Rocket, Home, ClipboardList } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import Image from "next/image";

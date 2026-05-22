@@ -22,7 +22,7 @@ const HomePagePetSection = async () => {
             </h3>
 
             <p className="text-slate-500 dark:text-slate-400 max-w-xl transition-colors">
-              Handpicked premium pets designed to help you master the most in-demand skills in the industry today.
+              Lovable companion pets waiting to find their forever homes and bring joy to your family.
             </p>
 
           </div>

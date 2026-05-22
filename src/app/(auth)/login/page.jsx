@@ -28,14 +28,18 @@ export default function Login() {
         }
 
         toast.success("Login successful!");
-        router.push("/");
+        const params = new URLSearchParams(window.location.search);
+        const callbackUrl = params.get("callbackUrl") || "/";
+        router.push(callbackUrl);
         router.refresh();
     };
 
     const handelLoginWithGoogle = async () => {
+        const params = new URLSearchParams(window.location.search);
+        const callbackUrl = params.get("callbackUrl") || "/";
         await authClient.signIn.social({
             provider: "google",
-            callbackURL: "/"
+            callbackURL: callbackUrl
         });
     };
     

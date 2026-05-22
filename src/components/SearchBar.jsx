@@ -1,7 +1,7 @@
 "use client";
 
 import { PET_SPECIES } from "@/lib/pet-species";
-import { ChevronDown, PawPrint, Search } from "lucide-react";
+import { ChevronDown, PawPrint, Search, ArrowUpDown } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
@@ -10,8 +10,9 @@ const SearchBar = () => {
     const router = useRouter();
     const [search, setSearch] = useState(searchParams.get("searchTerm") || "");
     const [category, setCategory] = useState(searchParams.get("category") || "");
+    const [sort, setSort] = useState(searchParams.get("sort") || "");
 
-    const pushFilters = (nextSearch, nextCategory) => {
+    const pushFilters = (nextSearch, nextCategory, nextSort) => {
         const params = new URLSearchParams();
 
         if (nextSearch?.trim()) {
@@ -20,18 +21,26 @@ const SearchBar = () => {
         if (nextCategory) {
             params.set("category", nextCategory);
         }
+        if (nextSort) {
+            params.set("sort", nextSort);
+        }
 
         const query = params.toString();
         router.push(query ? `/courses?${query}` : "/courses");
     };
 
     const handleSearch = () => {
-        pushFilters(search, category);
+        pushFilters(search, category, sort);
     };
 
     const handleCategoryChange = (value) => {
         setCategory(value);
-        pushFilters(search, value);
+        pushFilters(search, value, sort);
+    };
+
+    const handleSortChange = (value) => {
+        setSort(value);
+        pushFilters(search, category, value);
     };
 
     const handleKeyDown = (e) => {
@@ -40,6 +49,7 @@ const SearchBar = () => {
 
     return (
         <div className="flex flex-col sm:flex-row gap-3 w-full">
+            {/* Species Filter */}
             <div className="relative sm:w-52 shrink-0">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none transition-colors">
                     <PawPrint className="w-5 h-5" />
@@ -60,6 +70,27 @@ const SearchBar = () => {
                 <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none transition-colors" />
             </div>
 
+            {/* Sorting Dropdown */}
+            <div className="relative sm:w-52 shrink-0">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none transition-colors">
+                    <ArrowUpDown className="w-5 h-5" />
+                </div>
+                <select
+                    value={sort}
+                    onChange={(e) => handleSortChange(e.target.value)}
+                    aria-label="Sort pets"
+                    className="w-full h-14 pl-12 pr-10 appearance-none border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-100 font-medium outline-none cursor-pointer hover:border-emerald-300 dark:hover:border-emerald-700 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-600/10 transition-all shadow-sm"
+                >
+                    <option value="">Sort By</option>
+                    <option value="fee-asc">Fee: Low to High</option>
+                    <option value="fee-desc">Fee: High to Low</option>
+                    <option value="age-asc">Age: Young to Old</option>
+                    <option value="age-desc">Age: Old to Young</option>
+                </select>
+                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none transition-colors" />
+            </div>
+
+            {/* Search Input */}
             <div className="relative flex flex-1 items-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm focus-within:ring-4 focus-within:ring-emerald-600/10 focus-within:border-emerald-600 dark:focus-within:border-emerald-500 transition-all overflow-hidden">
                 <div className="pl-5 text-slate-400 shrink-0 transition-colors">
                     <Search className="w-5 h-5" />
