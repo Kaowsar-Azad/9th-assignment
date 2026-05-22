@@ -111,7 +111,7 @@ export default function AddPetForm({ ownerEmail }) {
 
                 <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-                        {/* Pet Name */}
+                       
                         <div className="md:col-span-2 space-y-2">
                             <label htmlFor="petName" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Pet Name
@@ -125,7 +125,7 @@ export default function AddPetForm({ ownerEmail }) {
                             />
                         </div>
 
-                        {/* Description */}
+                       
                         <div className="md:col-span-2 space-y-2">
                             <label htmlFor="description" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Description
@@ -139,7 +139,7 @@ export default function AddPetForm({ ownerEmail }) {
                             />
                         </div>
 
-                        {/* Image URL */}
+                      
                         <div className="md:col-span-2 space-y-2">
                             <label htmlFor="imageUrl" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Image URL
@@ -153,13 +153,13 @@ export default function AddPetForm({ ownerEmail }) {
                                     name="imageUrl"
                                     required
                                     type="url"
-                                    placeholder="https://images.unsplash.com/..."
+                                    placeholder="Your image url"
                                     className="w-full h-14 pl-12 pr-4 bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-800 hover:border-blue-600/50 focus-within:border-blue-600 rounded-2xl transition-all duration-300 shadow-none outline-none"
                                 />
                             </div>
                         </div>
 
-                        {/* Species */}
+                      
                         <div className="space-y-2">
                             <label htmlFor="species" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Species
@@ -186,7 +186,7 @@ export default function AddPetForm({ ownerEmail }) {
                             </div>
                         </div>
 
-                        {/* Breed */}
+                      
                         <div className="space-y-2">
                             <label htmlFor="breed" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Breed
@@ -206,7 +206,7 @@ export default function AddPetForm({ ownerEmail }) {
                             </div>
                         </div>
 
-                        {/* Age */}
+                        
                         <div className="space-y-2">
                             <label htmlFor="age" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Age
@@ -226,7 +226,7 @@ export default function AddPetForm({ ownerEmail }) {
                             </div>
                         </div>
 
-                        {/* Gender */}
+                     
                         <div className="space-y-2">
                             <label htmlFor="gender" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Gender
@@ -253,7 +253,7 @@ export default function AddPetForm({ ownerEmail }) {
                             </div>
                         </div>
 
-                        {/* Health Status */}
+                   
                         <div className="space-y-2">
                             <label htmlFor="healthStatus" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Health Status
@@ -273,7 +273,6 @@ export default function AddPetForm({ ownerEmail }) {
                             </div>
                         </div>
 
-                        {/* Vaccination Status */}
                         <div className="space-y-2">
                             <label htmlFor="vaccinationStatus" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Vaccination Status
@@ -293,7 +292,7 @@ export default function AddPetForm({ ownerEmail }) {
                             </div>
                         </div>
 
-                        {/* Location */}
+                     
                         <div className="space-y-2">
                             <label htmlFor="location" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Location
@@ -313,7 +312,7 @@ export default function AddPetForm({ ownerEmail }) {
                             </div>
                         </div>
 
-                        {/* Adoption Fee */}
+                        
                         <div className="space-y-2">
                             <label htmlFor="adoptionFee" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Adoption Fee
@@ -333,7 +332,7 @@ export default function AddPetForm({ ownerEmail }) {
                             </div>
                         </div>
 
-                        {/* Owner Email - auto filled, read only */}
+                      
                         <div className="space-y-2">
                             <label htmlFor="ownerEmail" className="text-sm font-bold text-slate-700 dark:text-slate-300 ml-1 transition-colors">
                                 Owner Email

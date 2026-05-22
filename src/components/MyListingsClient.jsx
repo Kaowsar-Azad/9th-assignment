@@ -60,7 +60,7 @@ export default function MyListingsClient({ myListings: initialListings }) {
                     </h1>
                     <p className="text-slate-500 dark:text-slate-400 font-medium transition-colors">Manage the pets you have listed for adoption.</p>
                 </div>
-                <Link href="/add-pet">
+                <Link href="/dashboard/add-pet">
                     <button className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-600/20 hover:opacity-90 transition-opacity text-sm">
                         <Plus className="w-4 h-4" />
                         Add New Pet
@@ -92,7 +92,7 @@ export default function MyListingsClient({ myListings: initialListings }) {
             {listings.length === 0 ? (
                 <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-16 text-center space-y-4 shadow-sm transition-colors">
                     <p className="text-slate-500 dark:text-slate-400 font-medium">You haven{"'"}t listed any pets for adoption yet.</p>
-                    <Link href="/add-pet">
+                    <Link href="/dashboard/add-pet">
                         <button className="px-6 py-2.5 bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-bold rounded-xl text-sm hover:opacity-90 transition-opacity">
                             Add Your First Pet
                         </button>

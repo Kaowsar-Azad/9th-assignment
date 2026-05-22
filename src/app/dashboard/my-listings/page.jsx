@@ -12,13 +12,13 @@ export default async function MyListingsPage() {
         redirect("/login");
     }
 
-    // Fetch all pets
+    
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses`, {
         cache: 'no-store'
     });
     const allPets = await res.json() || [];
 
-    // Filter pets created by the logged-in user
+   
     const myListings = allPets.filter(pet => pet.ownerEmail === session.user.email);
 
     return <MyListingsClient myListings={myListings} />;

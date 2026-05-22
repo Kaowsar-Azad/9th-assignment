@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { BookOpen, Menu, X, User, LogOut, LayoutDashboard, Heart, Sun, Moon, LogIn, Rocket, Home, ClipboardList, PlusCircle } from "lucide-react";
+import { BookOpen, Menu, X, User, LogOut, LayoutDashboard, Heart, Sun, Moon, LogIn, Rocket, Home, ClipboardList } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import Image from "next/image";
@@ -112,20 +112,7 @@ export function MainNavbar() {
             >
               All Pets
             </Link>
-            {session && (
-              <>
-                <Link
-                  href="/add-pet"
-                  className={`font-semibold transition-colors duration-200 ${
-                    isActive("/add-pet")
-                      ? "text-blue-600 dark:text-blue-400"
-                      : "text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400"
-                  }`}
-                >
-                  Add Pet
-                </Link>
-              </>
-            )}
+
           </div>
 
           <div className="hidden md:flex items-center gap-4">
@@ -226,22 +213,7 @@ export function MainNavbar() {
               <span className="font-semibold text-sm">All Pets</span>
             </Link>
 
-            {session && (
-              <>
-                <Link
-                  href="/add-pet"
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
-                    isActive("/add-pet")
-                      ? "bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-bold"
-                      : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50"
-                  }`}
-                >
-                  <PlusCircle size={18} />
-                  <span className="font-semibold text-sm">Add Pet</span>
-                </Link>
-              </>
-            )}
+
           </div>
 
           {!session ? (

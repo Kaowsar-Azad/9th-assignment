@@ -106,7 +106,7 @@ export default async function CourseDetails({ params }) {
 
             </div>
 
-            {/* PET NAME & ADOPTION FEE ROW */}
+          
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 border-b border-emerald-100 dark:border-emerald-900/50 pb-5 transition-colors">
               <div className="space-y-2">
                 <div className="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 px-3 py-1 rounded-full text-xs font-bold transition-colors">
@@ -178,7 +178,7 @@ export default async function CourseDetails({ params }) {
               ))}
             </div>
 
-            {/* ABOUT SECTION */}
+        
             <div className="space-y-3 pt-4 border-t border-emerald-100 dark:border-emerald-900/50 transition-colors">
               <h2 className="text-xl md:text-2xl font-black text-slate-900 dark:text-white tracking-tight transition-colors">
                 About {petName}
@@ -190,7 +190,7 @@ export default async function CourseDetails({ params }) {
 
           </div>
 
-          {/* RIGHT SIDE */}
+        
           <div className="lg:col-span-1 lg:sticky lg:top-24">
             <AdoptionForm course={pets} />
           </div>
