@@ -31,6 +31,7 @@ export default function AdoptionForm({ course }) {
         const token = jwtData?.token;
         if (!token) {
             toast.error("Please log in to adopt this pet.");
+            router.push("/login");
             return;
         }
 
