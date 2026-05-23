@@ -213,6 +213,20 @@ export function MainNavbar() {
               <span className="font-semibold text-sm">All Pets</span>
             </Link>
 
+            {session && (
+              <Link
+                href="/dashboard"
+                onClick={() => setIsMenuOpen(false)}
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+                  pathname.startsWith("/dashboard")
+                    ? "bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 font-bold"
+                    : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50"
+                }`}
+              >
+                <LayoutDashboard size={18} />
+                <span className="font-semibold text-sm">Dashboard</span>
+              </Link>
+            )}
 
           </div>
 
