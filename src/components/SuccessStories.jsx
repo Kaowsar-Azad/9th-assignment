@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 
@@ -14,7 +15,7 @@ const SuccessStories = () => {
           </h2>
           <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed transition-colors">
             Read heartwarming stories of pets finding their true happy places and
-            the lives they've illuminated.
+            the lives they&apos;ve illuminated.
           </p>
         </div>
 
@@ -27,9 +28,11 @@ const SuccessStories = () => {
         >
           
           <div className="w-full lg:w-1/2">
-            <img 
+            <Image 
               src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&q=80&w=1200" 
               alt="Beautiful Dog" 
+              width={1200}
+              height={450}
               className="w-full h-[300px] md:h-[450px] object-cover rounded-[2rem] shadow-lg"
             />
           </div>
@@ -42,13 +45,13 @@ const SuccessStories = () => {
             </div>
 
             <h3 className="text-2xl md:text-4xl font-bold mb-6">
-              "Buster found his safe space!"
+              &quot;Buster found his safe space!&quot;
             </h3>
 
             <p className="text-gray-300 text-sm md:text-lg italic leading-relaxed mb-8">
-              "Buster had spent months in a crowded shelter, feeling scared and quiet. Once we adopted him 
+              &quot;Buster had spent months in a crowded shelter, feeling scared and quiet. Once we adopted him 
               through this platform, he transformed into the most active, loving beagle pup! We play every 
-              afternoon, and he is a total blessing."
+              afternoon, and he is a total blessing.&quot;
             </p>
 
             <div className="flex items-center gap-2">

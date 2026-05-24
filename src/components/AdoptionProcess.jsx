@@ -29,12 +29,12 @@ const AdoptionProcess = () => {
     <section className="bg-[#f8fafc] dark:bg-slate-950 py-16 px-6 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#1e293b] dark:text-white mb-4 transition-colors">
-            Our 3-Step Adoption Process
+          <h2 className="text-3xl md:text-5xl font-extrabold text-[#1e293b] dark:text-white leading-tight mb-4 transition-colors">
+            Your Journey to a <span className="text-[#10b981]">New Best Friend</span>
           </h2>
-          <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed transition-colors">
-            Adopting a pet shouldn't be stressful. We've optimized the process to
-            make it fast, secure, and transparent.
+          <p className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed transition-colors">
+            We&apos;ve made adopting as simple and transparent as possible. Here&apos;s how you can 
+            bring joy to a shelter pet&apos;s life.
           </p>
         </div>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Sparkles, Heart } from 'lucide-react';
 
@@ -58,18 +59,18 @@ const HeroBanner = () => {
           
           <div className="space-y-4">
             <div className="h-44 sm:h-64 rounded-3xl overflow-hidden shadow-md transform hover:scale-[1.02] transition-transform duration-300">
-              <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=400" alt="Cute dog looking happy" className="w-full h-full object-cover" />
+              <Image src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=400" width={400} height={400} alt="Cute dog looking happy" className="w-full h-full object-cover" />
             </div>
             <div className="h-32 sm:h-48 rounded-3xl overflow-hidden shadow-md transform hover:scale-[1.02] transition-transform duration-300">
-              <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=400" alt="Playful cat" className="w-full h-full object-cover" />
+              <Image src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=400" width={400} height={400} alt="Playful cat" className="w-full h-full object-cover" />
             </div>
           </div>
           <div className="space-y-4 pt-8">
             <div className="h-32 sm:h-48 rounded-3xl overflow-hidden shadow-md transform hover:scale-[1.02] transition-transform duration-300">
-              <img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&q=80&w=400" alt="Cute golden puppy" className="w-full h-full object-cover" />
+              <Image src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&q=80&w=400" width={400} height={400} alt="Cute golden puppy" className="w-full h-full object-cover" />
             </div>
             <div className="h-44 sm:h-64 rounded-3xl overflow-hidden shadow-md transform hover:scale-[1.02] transition-transform duration-300">
-              <img src="https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?auto=format&fit=crop&q=80&w=400" alt="Lovely bunny rabbit" className="w-full h-full object-cover" />
+              <Image src="https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?auto=format&fit=crop&q=80&w=400" width={400} height={400} alt="Lovely bunny rabbit" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>

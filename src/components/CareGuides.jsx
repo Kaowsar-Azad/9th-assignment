@@ -41,8 +41,8 @@ const CareGuides = () => {
           </h2>
           
           <p className="text-[#64748b] dark:text-slate-400 text-[16px] md:text-[18px] leading-relaxed max-w-xl transition-colors">
-            Transitioning a new pet into your home can require adjustment. We've compiled expert 
-            veterinarian guidelines to keep your pets happy, safe, and active.
+            Dive into our expert-crafted guides to ensure your new best friend gets the 
+            healthiest, happiest start in their new home. It&apos;s all about love and care.
           </p>
 
           <button className="bg-[#10b981] hover:bg-[#059669] text-white px-8 py-4 rounded-2xl font-bold text-[16px] transition-all shadow-lg shadow-emerald-100 transform hover:-translate-y-1">

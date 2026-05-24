@@ -250,7 +250,7 @@ export default function MyRequestsClient({ initialRequests, petMap, stats }) {
 
                         <div className="p-5 sm:p-6 space-y-5">
                             <p className="text-slate-650 dark:text-slate-350 text-sm transition-colors leading-relaxed">
-                                Are you sure you want to cancel your adoption request for <span className="font-extrabold text-slate-900 dark:text-white">"{cancelModalPet.courseTitle}"</span>? This action will remove the request permanently.
+                                Are you sure you want to cancel your adoption request for <span className="font-extrabold text-slate-900 dark:text-white">&quot;{cancelModalPet.courseTitle}&quot;</span>? This action will remove the request permanently.
                             </p>
 
                             <div className="flex flex-col-reverse sm:flex-row gap-3">

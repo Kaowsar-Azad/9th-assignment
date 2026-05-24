@@ -10,10 +10,6 @@ export default function RequestsModal({ pet, onClose, onUpdated }) {
     const [loading, setLoading] = useState(true);
     const [updatingId, setUpdatingId] = useState(null);
 
-    useEffect(() => {
-        fetchRequests();
-    }, []);
-
     const fetchRequests = async () => {
         setLoading(true);
         try {
@@ -31,6 +27,10 @@ export default function RequestsModal({ pet, onClose, onUpdated }) {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        fetchRequests();
+    }, [pet._id]);
 
     const handleStatus = async (enrollmentId, status) => {
         setUpdatingId(enrollmentId);
@@ -63,7 +63,6 @@ export default function RequestsModal({ pet, onClose, onUpdated }) {
                     }
                 );
                 if (petRes.ok) {
-                    pet.status = "Adopted";
                     if (onUpdated) {
                         onUpdated({ ...pet, status: "Adopted" });
                     }

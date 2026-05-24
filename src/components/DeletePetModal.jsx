@@ -60,7 +60,7 @@ export default function DeletePetModal({ pet, onClose, onDeleted }) {
                             <p className="font-bold text-red-700 dark:text-red-400 text-sm transition-colors">This action cannot be undone</p>
                             <p className="text-red-600 dark:text-red-300 text-sm mt-1 transition-colors">
                                 Are you sure you want to permanently delete{" "}
-                                <span className="font-black">"{pet.petName}"</span>? All associated adoption requests will also be lost.
+                                <span className="font-black">&quot;{pet.petName}&quot;</span>? All associated adoption requests will also be lost.
                             </p>
                         </div>
                     </div>

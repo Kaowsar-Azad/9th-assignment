@@ -33,9 +33,8 @@ const NotFoundPage = () => {
           Oops! Page Lost
         </h1>
         
-        <p className="text-[#64748b] text-sm md:text-base leading-relaxed max-w-xs mx-auto mb-8">
-          Just like an excited pup off its leash, it seems we've wandered 
-          off the trail. The page you're searching for doesn't exist.
+        <p className="text-gray-500 dark:text-gray-400 mb-8 max-w-md mx-auto leading-relaxed">
+          The page you&apos;re looking for doesn&apos;t exist or has been moved. Don&apos;t worry, there are still plenty of furry friends waiting for you!
         </p>
 
         <Link href="/">

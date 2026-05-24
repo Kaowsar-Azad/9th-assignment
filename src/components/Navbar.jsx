@@ -7,6 +7,7 @@ import { Button } from "@heroui/react";
 import Image from "next/image";
 import { signOut, useSession, authClient } from "@/lib/auth-client";
 import { useRouter, usePathname } from "next/navigation";
+import toast from "react-hot-toast";
 
 export function MainNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -70,6 +71,7 @@ export function MainNavbar() {
 
   const handleLogout = async () => {
     await signOut();
+    toast.success("Logged out successfully!");
     router.push("/");
   };
 

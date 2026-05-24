@@ -141,13 +141,13 @@ export default function Register() {
                             <Input
                                 id="password"
                                 required
-                                placeholder="••••••••"
+                                placeholder="Enter your password"
                                 type="password"
                                 name="password"
                                 className="border-2 border-slate-200 dark:border-slate-800 hover:border-blue-600/50 dark:hover:border-blue-500/50 focus-within:border-blue-600 dark:focus-within:border-blue-500 bg-white dark:bg-slate-905 w-full rounded-2xl transition-all duration-300"
                             />
                             <div className="text-[11px] text-slate-400 dark:text-slate-500 font-semibold ml-1.5 space-y-0.5 transition-colors">
-                                <p>• At least 6 characters long</p>
+                                <p>• At least 8 characters long</p>
                                 <p>• At least one uppercase letter (A-Z)</p>
                                 <p>• At least one lowercase letter (a-z)</p>
                             </div>

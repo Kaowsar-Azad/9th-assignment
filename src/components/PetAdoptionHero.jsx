@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 
@@ -63,15 +64,17 @@ const WhyChooseAdoption = () => {
           className="flex-1 relative w-full"
         >
           <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-800">
-            <img 
+            <Image 
               src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=1200" 
               alt="Cute Cat" 
+              width={1200}
+              height={500}
               className="w-full h-[380px] md:h-[500px] object-cover" 
             />
             
             <div className="absolute bottom-5 left-5 right-5 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-5 md:p-7 rounded-[1.8rem] shadow-xl transition-colors">
               <p className="text-[#1e293b] dark:text-slate-100 font-semibold text-sm md:text-lg italic leading-tight">
-                "Adopting Luna changed our family forever. She brings endless peace and joy."
+                &quot;Adopting Luna changed our family forever. She brings endless peace and joy.&quot;
               </p>
               <p className="text-[#10b981] mt-2 font-bold text-xs md:text-sm uppercase tracking-wider">
                 — The Miller Family

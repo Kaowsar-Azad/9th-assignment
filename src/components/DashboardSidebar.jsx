@@ -14,6 +14,7 @@ import {
     PawPrint
 } from 'lucide-react';
 import { signOut } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 
 export default function DashboardSidebar({ user }) {
     const pathname = usePathname();
@@ -22,6 +23,7 @@ export default function DashboardSidebar({ user }) {
 
     const handleLogout = async () => {
         await signOut();
+        toast.success("Logged out successfully!");
         router.push("/");
     };
 
