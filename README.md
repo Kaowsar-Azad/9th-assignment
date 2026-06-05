@@ -4,6 +4,8 @@ Adopets
 Purpose:
 Adopets is a modern, secure, and user-friendly pet adoption platform. Its primary purpose is to connect compassionate individuals with shelter pets in need of a loving home. The platform allows users to browse adoptable pets, search and filter by species, securely manage their own pet listings, and seamlessly send or approve adoption requests.
 
+![Adopets Preview](https://i.ibb.co/kNDXR6V/Adopets-Preview.png)
+
 Live URL: [adopets-live.vercel.app](https://adopets-live.vercel.app)
 
 Features:
